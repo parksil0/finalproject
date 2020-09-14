@@ -1,0 +1,167 @@
+.todoTab {
+    overflow: hidden;
+}
+
+.todoNav {
+    float: left;
+    width: 20%;
+}
+
+.todoNav li:first-child{
+    border-top: 1px solid #ddd;
+}
+
+.todoNav li{
+    height: 50px;
+    background: #efefef;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.todoNav li a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    line-height: 50px;
+    font-weight: 400;
+    padding: 0 45px 0 20px;
+    box-sizing: border-box;
+    
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.todoNav .project a{
+    background: url(../img/project.png) no-repeat right 20px center;
+    background-size: 20px;
+}
+
+.todoNav .active a{
+    font-weight: 500;
+    color: white;
+    background-color: #fd9f3b;
+}
+
+.todoNav .project.active a{
+    background-image : url(../img/projectActive.png);
+}
+
+.todoCont {
+    float: left;
+    width: 80%;
+}
+
+.todoCont > li{
+    display: none;
+    width: 100%;
+    height: 250px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.todoCont > li.active{
+    display: block;
+}
+
+.todoCont li a{
+    display: inline-block;
+    width: calc(100% - 32px);
+    height: 100%;
+}
+
+
+.todoContList{
+    overflow: hidden;
+}
+
+.todoContList li{
+    font-size: 0;
+    width: 48%;
+    float: left;
+    line-height: 32px;
+}
+
+.todoContList li:nth-child(2n){
+    margin-left: 2%;
+}
+
+.todoContList .todoContTxt{
+    display: inline-block;
+    max-width: 60%;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space:nowrap;
+    vertical-align: bottom;
+}
+
+
+.todoContList .deadLine{
+    font-size: 12px;
+}
+
+.departTodo dl{
+    width: 22%;
+    float: left;
+    margin-right: 4%;
+}
+
+.departTodo dl:nth-child(4n){
+    margin-right: 0;
+}
+
+.departTodo dt{
+    background: url(../img/employee.png) no-repeat left center;
+    background-size: 20px;
+    padding-left: 30px;
+    font-size: 0;
+}
+
+.departTodo dt .memberName{
+    display: inline-block;
+    vertical-align: middle;
+    width: 60%;
+}
+
+.departTodo dt .todoType{
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+    width: 40%;
+}
+
+.departTodo dt .todoType .bullet{
+    font-weight: 900;
+    margin: 0 5px 0 10px;
+}
+
+.departTodo dt .todoType .bullet:first-child{
+    color: #ff8400;
+}
+
+.departTodo dd{
+    width: 100%;
+    height: 200px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    box-sizing: border-box;
+    padding: 20px;
+    overflow: auto;
+}
+
+.departTodo dd li a{
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    width: calc(100% - 16px);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.workDetail td{
+    text-align: left;
+}

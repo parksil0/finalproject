@@ -1,0 +1,33 @@
+.noticeImg {
+    vertical-align: middle;
+}
+
+.noticeT {
+    border-bottom: 1px solid #ddd;
+}
+
+.noticeT th {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.noticeT td {
+    font-size: 14px;
+    color: #999;
+    font-weight: 400;
+    line-height: 28px;
+    padding-bottom: 5px;
+}
+
+.Nth1 {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.chatBox {
+    margin-top: 400px;
+}
+
+.chatBox2 {
+    border: 1px solid #ddd;
+}

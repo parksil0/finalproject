@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- font-family: 'Montserrat', sans-serif; -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,500i,600,600i,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&subset=korean" rel="stylesheet">
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="js/common.js"></script>
+
+    <link rel="stylesheet" href="css/confirm.css">
+    <script src="js/confirm.js"></script>
+
+    <title>withWork</title>
+</head>
+<body>
+    <header>
+        <dl class="groupInfo headerInner">
+            <dt>GOOGLE</dt>
+            <dd>
+                <img src="img/user.png" alt="">
+                <span>최은서</span>님, 안녕하세요.
+            </dd>
+        </dl>
+        <ul class="allInfo">
+            <li><a href="#" class="todoIcon">TO-DO</a></li>
+            <li><a href="#" class="roadMapIcon">ROADMAP</a></li>
+        </ul>
+        <dl class="headerInner">
+            <dt>참여중인 프로젝트</dt>
+            <dd class="projectSearch">
+                <input type="text" placeholder="프로젝트명을 입력해주세요.">
+                <input type="button" value="">
+            </dd>
+        </dl>
+        <ul class="projectList">
+            <li class="active">
+                <a href="#" class="projectTit">SAMSUNG 리뉴얼</a>
+                <ul>
+                    <li><a href="#">TO-DO</a></li>
+                    <li><a href="#">NOTICE</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="projectTit">LG 유지보수</a>
+                <ul>
+                    <li><a href="#">TO-DO</a></li>
+                    <li><a href="#">NOTICE</a></li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+    <section>
+        <dl class="conTit">
+            <dt>내 결재함</dt>
+        </dl>
+      
+    <!--탭 메뉴 영역-->
+    <ul class="tabs">
+        <li class="active"><a href="#tab1">전체보기</a></li>
+        <li class="active"><a href="#tab2">대기</a></li>
+        <li class="active"><a href="#tab3">진행 중</a></li>
+        <li class="active"><a href="#tab4">보류</a></li>
+        <li class="active"><a href="#tab5">결재 완료</a></li>
+    </ul>
+
+    <!--탭 내역-->
+    <div id="tab1" class="tab_content">
+         <div class="table smallMG">
+            <table>
+                <caption>전체 보기</caption>
+                <colgroup>
+                    <col width="5%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="30%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="5%">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>배정일시</th>
+                        <th>완료일시</th>
+                        <th>결재일시</th>
+                        <th>업무명</th>
+                        <th>기안자</th>
+                        <th>결재자</th>
+                        <th>상태</th>
+                        <th>상세</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            &nbsp;
+            <ul class="paging">
+                <li><a href="#" class="arrow">◀</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#" class="arrow">▶</a></li>
+            </ul>
+         </div>
+         
+    </div> 
+    <div id="tab2" class="tab_content">
+        <div class="table smallMG">
+            <table>
+                <caption>결재 대기</caption>
+                <colgroup>
+                    <col width="5%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="30%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="5%">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>배정일시</th>
+                        <th>완료일시</th>
+                        <th>결재일시</th>
+                        <th>업무명</th>
+                        <th>기안자</th>
+                        <th>결재자</th>
+                        <th>상태</th>
+                        <th>상세</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            &nbsp;
+            <ul class="paging">
+                <li><a href="#" class="arrow">◀</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#" class="arrow">▶</a></li>
+            </ul>
+         </div>
+    </div> 
+
+
+    <div id="tab3" class="tab_content">
+        <div class="table smallMG">
+            <table>
+                <caption>결재 진행 중</caption>
+                <colgroup>
+                    <col width="5%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="30%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="5%">
+                </colgroup>
+                <thead>
+                   <tr>
+                        <th>No</th>
+                        <th>배정일시</th>
+                        <th>완료일시</th>
+                        <th>결재일시</th>
+                        <th>업무명</th>
+                        <th>기안자</th>
+                        <th>결재자</th>
+                        <th>상태</th>
+                        <th>상세</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            &nbsp;
+            <ul class="paging">
+                <li><a href="#" class="arrow">◀</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#" class="arrow">▶</a></li>
+            </ul>
+         </div>
+    </div> 
+
+    <div id="tab4" class="tab_content">
+        <div class="table smallMG">
+            <table>
+                <caption>결재 보류</caption>
+                <colgroup>
+                    <col width="5%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="30%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="5%">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>배정일시</th>
+                        <th>완료일시</th>
+                        <th>결재일시</th>
+                        <th>업무명</th>
+                        <th>기안자</th>
+                        <th>결재자</th>
+                        <th>상태</th>
+                        <th>상세</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>비트캠프 거래 취소 통지</td>
+                        <td>곽변호사</td>
+                        <td>최팀장</td>
+                        <td>진행중</td>
+                        <td><img src="img/mess.png" id="mess" ></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>유영준해고하기</td>
+                        <td>권노미</td>
+                        <td>임윤희선생</td> 
+                        <td>진행중</td>
+                        <td><img src="img/mess.png" id="mess" ></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><img src="img/mess.png" id="mess" ></td>
+                    </tr>
+                </tbody>
+            </table>
+            &nbsp;
+            <ul class="paging">
+                <li><a href="#" class="arrow">◀</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#" class="arrow">▶</a></li>
+            </ul>
+         </div>
+    </div> 
+
+    <div id="tab5" class="tab_content">
+        <div class="table smallMG">
+            <table>
+                <caption>결재 완료</caption>
+                <colgroup>
+                    <col width="5%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="30%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="5%">
+                    <tr>
+                        <th>No</th>
+                        <th>배정일시</th>
+                        <th>완료일시</th>
+                        <th>결재일시</th>
+                        <th>업무명</th>
+                        <th>기안자</th>
+                        <th>결재자</th>
+                        <th>상태</th>
+                        <th>상세</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>2020.09.13</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td>내용</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            &nbsp;
+            <ul class="paging">
+                <li><a href="#" class="arrow">◀</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#" class="arrow">▶</a></li>
+            </ul>
+         </div>
+    </div> 
+    
+</div>
+
+</div>
+
+    </section>
+
+    <footer>
+        <ul class="quickBar">
+            <li>
+                <a href="#"><img src="img/users.png" alt=""></a>
+                <a href="confirm.html"><img src="img/approval.png" alt=""></a>
+            </li>
+        </ul>
+    </footer>
+    <div class="popup confirmPopup">
+        <dl>
+            <dt>
+                피드백 상세
+            </dt>
+           
+            <dd>
+                <div class="table feed">
+                    <table>
+                        <colgroup>
+                            <col width="20%">
+                            <col width="90"/>
+                            
+                        </colgroup>
+                        <tr>
+                            <th>Feedback</th>
+                            <td>코딩새끼개새끼코딩새끼개새끼코딩새끼개새끼코딩새끼개새끼</td>
+                        </tr>
+                </div>
+                
+                </table>
+                <div class="btnBox">
+                    
+                    <a href="#">확인</a>
+            </dd>
+        </dl>
+    </div>
+    <div class="darkBack"></div>
+    
+ 
+</body>
+</html>

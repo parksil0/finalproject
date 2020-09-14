@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- font-family: 'Montserrat', sans-serif; -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,500i,600,600i,700"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&subset=korean"
+      rel="stylesheet"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/calendar.css">
+    <link rel="stylesheet" href="css/calendar.css" />
+    <link rel="stylesheet" href="css/date.css">
+
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/calendar"></script>
+
+    <title>withWork</title>
+  </head>
+  <body>
+    <header>
+      <dl class="groupInfo headerInner">
+        <dt>GOOGLE</dt>
+        <dd>
+          <img src="img/user.png" alt="" />
+          <span>최은서</span>님, 안녕하세요.
+        </dd>
+      </dl>
+      <ul class="allInfo">
+        <li><a href="#" class="todoIcon">TO-DO</a></li>
+        <li><a href="#" class="roadMapIcon">ROADMAP</a></li>
+      </ul>
+      <dl class="headerInner">
+        <dt>참여중인 프로젝트</dt>
+        <dd class="projectSearch">
+          <input type="text" placeholder="프로젝트명을 입력해주세요." />
+          <input type="button" value="" />
+        </dd>
+      </dl>
+      <ul class="projectList">
+        <li class="active">
+          <a href="#" class="projectTit">SAMSUNG 리뉴얼</a>
+          <ul>
+            <li><a href="#">TO-DO</a></li>
+            <li><a href="#">NOTICE</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" class="projectTit">LG 유지보수</a>
+          <ul>
+            <li><a href="#">TO-DO</a></li>
+            <li><a href="#">NOTICE</a></li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+
+    <!-- ---------------------------------------------------------------------------------------------------- -->
+    <section>
+      <dl class="conTit">
+        <dt>Calendar</dt>      
+          <dd style="margin:1rem auto">📆 현재 회사에서 진행중인 프로젝트 일정 </dd>
+          <dd style="margin:-1rem auto">📌 년별 프로젝트 현황</dd>
+          <dd style="margin:0.5rem auto">🧾 진행중인 프로젝트 내역</dd>
+          <dd style="margin:-1rem auto">🖨 요청사항 ✔</dd>
+      </dl>
+        <h3 class="subTit smallMG"></h3>
+        <div class="roadmap-header" style="display:inline-block">
+          <div class="roadmap-schedule">전체일정</div>
+          <div class="roadmap-calendar">스케줄러</div>
+          <div style="width : 850px; display :inline-block"> 
+          <input type="date">
+        </div>
+         
+          
+  
+          <form class="search-form">
+            <input type="search">
+            
+            <input type="submit" value="검색🔍">
+            
+          </form>
+          <br>
+        </div>
+      </div>
+      <div class="calendar-position">
+        <div class="cal_top">
+          <a href="#" id="movePrevMonth"><span id="prevMonth" class="cal_tit">&lt;</span></a>
+          <span id="cal_top_year"></span>
+          <span id="cal_top_month"></span>
+          <a href="#" id="moveNextMonth"><span id="nextMonth" class="cal_tit">&gt;</span></a>
+        </div>
+        <div id="cal_tab" class="cal"></div>
+      </div>
+
+      
+    <script type="text/javascript">
+    
+      var today = null;
+      var year = null;
+      var month = null;
+      var firstDay = null;
+      var lastDay = null;
+      var $tdDay = null;
+      var $tdSche = null;
+   
+      $(document).ready(function() {
+          drawCalendar();
+          initDate();
+          drawDays();
+          $("#movePrevMonth").on("click", function(){movePrevMonth();});
+          $("#moveNextMonth").on("click", function(){moveNextMonth();});
+      });
+      
+      //calendar 그리기
+      function drawCalendar(){
+          var setTableHTML = "";
+          setTableHTML+='<table class="calendar">';
+          setTableHTML+='<tr><th>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr>';
+          for(var i=0;i<6;i++){
+              setTableHTML+='<tr height="100">';
+              for(var j=0;j<7;j++){
+                  setTableHTML+='<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">';
+                  setTableHTML+='    <div class="cal-day"></div>';
+                  setTableHTML+='    <div class="cal-schedule"></div>';
+                  setTableHTML+='</td>';
+              }
+              setTableHTML+='</tr>';
+          }
+          setTableHTML+='</table>';
+          $("#cal_tab").html(setTableHTML);
+      }
+   
+      //날짜 초기화
+      function initDate(){
+          $tdDay = $("td div.cal-day")
+          $tdSche = $("td div.cal-schedule")
+          dayCount = 0;
+          today = new Date();
+          year = today.getFullYear();
+          month = today.getMonth()+1;
+          firstDay = new Date(year,month-1,1);
+          lastDay = new Date(year,month,0);
+      }
+      
+      //calendar 날짜표시
+      function drawDays(){
+          $("#cal_top_year").text(year);
+          $("#cal_top_month").text(month);
+          for(var i=firstDay.getDay();i<firstDay.getDay()+lastDay.getDate();i++){
+              $tdDay.eq(i).text(++dayCount);
+          }
+          for(var i=0;i<42;i+=7){
+              $tdDay.eq(i).css("color","red");
+          }
+          for(var i=6;i<42;i+=7){
+              $tdDay.eq(i).css("color","blue");
+          }
+      }
+   
+      //calendar 월 이동
+      function movePrevMonth(){
+          month--;
+          if(month<=0){
+              month=12;
+              year--;
+          }
+          if(month<10){
+              month=String("0"+month);
+          }
+          getNewInfo();
+          }
+      
+      function moveNextMonth(){
+          month++;
+          if(month>12){
+              month=1;
+              year++;
+          }
+          if(month<10){
+              month=String("0"+month);
+          }
+          getNewInfo();
+      }
+  
+      
+      function getNewInfo(){
+          for(var i=0;i<42;i++){
+              $tdDay.eq(i).text("");
+          }
+          dayCount=0;
+          firstDay = new Date(year,month-1,1);
+          lastDay = new Date(year,month,0);
+          drawDays();
+      }
+  </script>
+
+      
+
+    </section>
+    <!-- --------------------------------------------------------------------- -->
+    <footer>
+      <ul class="quickBar">
+        <li>
+          <a href="#"><img src="img/users.png" alt="" /></a>
+        </li>
+      </ul>
+    </footer>
+    <div class="popup">
+      <dl>
+        <dt>
+          제목제목제목
+          <a href="#">X</a>
+        </dt>
+        <dd>
+          내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+          <div class="btnBox">
+            <a href="#">취소</a>
+            <a href="#">확인</a>
+          </div>
+        </dd>
+      </dl>
+    </div>
+    <div class="darkBack"></div>
+
+
+    <script src="script.js"></script>
+  </body>
+</html>

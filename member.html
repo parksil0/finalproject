@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- font-family: 'Montserrat', sans-serif; -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,500i,600,600i,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&subset=korean" rel="stylesheet">
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="js/common.js"></script>
+
+
+    <link rel="stylesheet" href="css/member.css">
+    <script src="js/member.js"></script>
+
+    <title>withWork</title>
+</head>
+<body>
+    <header>
+        <dl class="groupInfo headerInner">
+            <dt>GOOGLE</dt>
+            <dd>
+                <img src="img/user.png" alt="">
+                <span>최은서</span>님, 안녕하세요.
+            </dd>
+        </dl>
+        <ul class="allInfo">
+            <li><a href="#" class="todoIcon">TO-DO</a></li>
+            <li><a href="#" class="roadMapIcon">ROADMAP</a></li>
+        </ul>
+        <dl class="headerInner">
+            <dt>참여중인 프로젝트</dt>
+            <dd class="projectSearch">
+                <input type="text" placeholder="프로젝트명을 입력해주세요.">
+                <input type="button" value="">
+            </dd>
+        </dl>
+        <ul class="projectList">
+            <li class="active">
+                <a href="#" class="projectTit">SAMSUNG 리뉴얼</a>
+                <ul>
+                    <li><a href="#">TO-DO</a></li>
+                    <li><a href="#">NOTICE</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="projectTit">LG 유지보수</a>
+                <ul>
+                    <li><a href="#">TO-DO</a></li>
+                    <li><a href="#">NOTICE</a></li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+    <section>
+        <dl class="conTit memberCont">
+            <dt>그룹멤버</dt>
+            <dd>멤버를 그룹에 초대해보세요</dd>
+        </dl>
+        <div class="memberTab">
+            <button class="add">멤버초대</button>
+            <button class="change">멤버수정</button>
+            <button class="remove">멤버삭제</button>
+        </div>
+        <div class="projectSearch search">
+            <input type="text" placeholder="이름, 아이디, 이메일 중 하나를 입력해주세요.">
+            <input type="button" value="">
+        </div>
+        <ul class="memberTeam">
+            <li class="active">> 디자인팀</li>
+            <li class="memberList">
+                <ul>
+                    <li><img src="img/usericon.png"  alt="">곽은진&nbsp&nbsp&nbsptest.com</li>
+                    <li><img src="img/usericon.png"  alt="">곽은진</li>
+                    <li><img src="img/usericon.png"  alt="">곽은진</li>
+                    <li><img src="img/usericon.png"  alt="">곽은진</li>
+                    <li><img src="img/usericon.png"  alt="">곽은진</li>
+                </ul>
+            </li>
+        </ul>  
+        <ul class="memberTeam">
+            <li class="active">> 마케팅팀</li>
+            <li class="memberList">
+                <ul>
+                    <li><img src="img/usericon.png"  alt="">최은서</li>
+                    <li><img src="img/usericon.png"  alt="">최은서</li>
+                    <li><img src="img/usericon.png"  alt="">최은서</li>
+                    <li><img src="img/usericon.png"  alt="">최은서</li>
+                    <li><img src="img/usericon.png"  alt="">최은서</li>
+                </ul>
+            </li>
+        </ul>  
+        <ul class="memberTeam">
+            <li class="active">> 기획팀</li>
+            <li class="memberList">
+                <ul>
+                    <li><img src="img/usericon.png"  alt="">권은영</li>
+                    <li><img src="img/usericon.png"  alt="">권은영</li>
+                    <li><img src="img/usericon.png"  alt="">권은영</li>
+                    <li><img src="img/usericon.png"  alt="">권은영</li>
+                    <li><img src="img/usericon.png"  alt="">권은영</li>
+                </ul>
+            </li>
+        </ul>  
+    </section>
+    <footer>
+        <ul class="quickBar">
+            <li class="members">
+                <a href="#"><img src="img/users.png" alt=""></a>
+            </li>
+        </ul>
+    </footer>
+    <div class="popup memberInvite">
+        <dl>
+            <dt>
+                멤버초대
+                <a href="#">X</a>
+            </dt>
+            <dd>
+                <div class="projectSearch search">
+                    <input type="text" placeholder="이름, 아이디, 이메일 중 하나를 입력해주세요.">
+                    <input type="button" value="">
+                </div>
+                <div class="table searchMember">
+                    <table>
+                        <colgroup>
+                            <col width="10%">
+                            <col width="40%"/>
+                            <col width="20%"/>
+                            <col width="20%"/>
+                            <col width="10%"/>
+                        </colgroup>
+                        <tr>
+                            <th><img src="img/usericon.png"  alt=""></th>
+                            <td>
+                                <p>곽은진</p>
+                                <p>test@test.com</p>
+                            </td>
+                            <td>
+                                <select>
+                                    <option>그룹선택</option>
+                                    <option>마케팅팀</option>
+                                    <option>디자인팀</option>
+                                    <option>기획팀</option>
+                                    <option>재무관리팀</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select>
+                                    <option>권한선택</option>
+                                    <option>관리자</option>
+                                    <option>멤버</option>
+                                </select>
+                            </td>
+                            <td>초대</td>
+                        </tr>
+                        <tr>
+                            <th><img src="img/usericon.png"  alt=""></th>
+                            <td>
+                                <p>최은서</p>
+                                <p>test@test.com</p>
+                            </td>
+                            <td>
+                                <select>
+                                    <option>그룹선택</option>
+                                    <option>마케팅팀</option>
+                                    <option>디자인팀</option>
+                                    <option>기획팀</option>
+                                    <option>재무관리팀</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select>
+                                    <option>권한선택</option>
+                                    <option>관리자</option>
+                                    <option>멤버</option>
+                                </select>
+                            </td>
+                            <td>초대</td>
+                        </tr>
+                        <tr>
+                            <th><img src="img/usericon.png"  alt=""></th>
+                            <td>
+                                <p>권은영</p>
+                                <p>test@test.com</p>
+                            </td>
+                            <td>
+                                <select>
+                                    <option>그룹선택</option>
+                                    <option>마케팅팀</option>
+                                    <option>디자인팀</option>
+                                    <option>기획팀</option>
+                                    <option>재무관리팀</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select>
+                                    <option>권한선택</option>
+                                    <option>관리자</option>
+                                    <option>멤버</option>
+                                </select>
+                            </td>
+                            <td>초대</td>
+                        </tr>
+                    </table>
+                <div class="btnBox">
+                    <a href="#">취소</a>
+                    <a href="#">확인</a>
+                </div>
+            </dd>
+        </dl>
+    </div>
+    <div class="popup memberChange">
+        <dl>
+            <dt>
+                멤버수정
+                <a href="#">X</a>
+            </dt>
+            <dd>
+                <div class="projectSearch search">
+                    <input type="text" placeholder="이름, 아이디, 이메일 중 하나를 입력해주세요.">
+                    <input type="button" value="">
+                </div>
+                <div class="table searchMember">
+                    <table>
+                        <colgroup>
+                            <col width="10%">
+                            <col width="40%"/>
+                            <col width="20%"/>
+                            <col width="20%"/>
+                            <col width="10%"/>
+                        </colgroup>
+                        <tr>
+                            <th><img src="img/usericon.png"  alt=""></th>
+                            <td>
+                                <p>곽은진</p>
+                                <p>test@test.com</p>
+                            </td>
+                            <td>
+                                <select>
+                                    <option>그룹선택</option>
+                                    <option>마케팅팀</option>
+                                    <option>디자인팀</option>
+                                    <option>기획팀</option>
+                                    <option>재무관리팀</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select>
+                                    <option>권한선택</option>
+                                    <option>관리자</option>
+                                    <option>멤버</option>
+                                </select>
+                            </td>
+                            <td>수정</td>
+                        </tr>
+                        <tr>
+                            <th><img src="img/usericon.png"  alt=""></th>
+                            <td>
+                                <p>최은서</p>
+                                <p>test@test.com</p>
+                            </td>
+                            <td>
+                                <select>
+                                    <option>그룹선택</option>
+                                    <option>마케팅팀</option>
+                                    <option>디자인팀</option>
+                                    <option>기획팀</option>
+                                    <option>재무관리팀</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select>
+                                    <option>권한선택</option>
+                                    <option>관리자</option>
+                                    <option>멤버</option>
+                                </select>
+                            </td>
+                            <td>수정</td>
+                        </tr>
+                        <tr>
+                            <th><img src="img/usericon.png"  alt=""></th>
+                            <td>
+                                <p>권은영</p>
+                                <p>test@test.com</p>
+                            </td>
+                            <td>
+                                <select>
+                                    <option>그룹선택</option>
+                                    <option>마케팅팀</option>
+                                    <option>디자인팀</option>
+                                    <option>기획팀</option>
+                                    <option>재무관리팀</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select>
+                                    <option>권한선택</option>
+                                    <option>관리자</option>
+                                    <option>멤버</option>
+                                </select>
+                            </td>
+                            <td>수정</td>
+                        </tr>
+                    </table>
+                <div class="btnBox">
+                    <a href="#">취소</a>
+                    <a href="#">확인</a>
+                </div>
+            </dd>
+        </dl>
+    </div>
+    <div class="popup memberRemove">
+        <dl>
+            <dt>
+                멤버삭제
+                <a href="#">X</a>
+            </dt>
+            <dd>
+                <div class="projectSearch search">
+                    <input type="text" placeholder="이름, 아이디, 이메일 중 하나를 입력해주세요.">
+                    <input type="button" value="">
+                </div>
+                <div class="table searchMember">
+                    <table>
+                        <colgroup>
+                            <col width="10%">
+                            <col width="40%"/>
+                            <col width="20%"/>
+                            <col width="20%"/>
+                            <col width="10%"/>
+                        </colgroup>
+                        <tr>
+                            <th><img src="img/usericon.png"  alt=""></th>
+                            <td>
+                                <p>곽은진</p>
+                                <p>test@test.com</p>
+                            </td>
+                            <td>재무관리팀</td>
+                            <td>관리자</td>
+                            <td>삭제</td>
+                        </tr>
+                        <tr>
+                            <th><img src="img/usericon.png"  alt=""></th>
+                            <td>
+                                <p>최은서</p>
+                                <p>test@test.com</p>
+                            </td>
+                            <td>기획팀</td>
+                            <td>멤버</td>
+                            <td>삭제</td>
+                        </tr>
+                        <tr>
+                            <th><img src="img/usericon.png"  alt=""></th>
+                            <td>
+                                <p>권은영</p>
+                                <p>test@test.com</p>
+                            </td>
+                            <td>마케팅팀</td>
+                            <td>관리자</td>
+                            <td>삭제</td>
+                        </tr>
+                    </table>
+                <div class="btnBox">
+                    <a href="#">취소</a>
+                    <a href="#">확인</a>
+                </div>
+            </dd>
+        </dl>
+    </div>
+    <div class="darkBack"></div>
+</body>
+</html>
