@@ -10,12 +10,11 @@
 
     <!-- css -->
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/joinForm.css">
+    <link rel="stylesheet" href="css/joinForm,signup,mainPage.css">
 
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="js/common.js"></script>
+    <script src="js/joinForm,signup,mainPage.js"></script>
 
     <title>withWork</title>
 </head>
@@ -106,22 +105,4 @@
     </form>
                     
 </body>
-<script>
-    $(document).ready(function(){
-        $(".chkAll").click(function(){
-            if($(".chkAll").prop("checked")){
-                $("input[name=chk]").prop("checked", true);
-            } else {
-                $("input[name=chk]").prop("checked",false);
-            }
-        });
-
-        $(".fpmgBt1 a").click(function(){
-            if(!$(".requiredBtn").prop("checked")) {
-                alert("이용약관과 개인정보 수집 및 이용에 대한 안내 모두 동의해주세요.");
-                return false;
-            }
-        });
-    });
-</script>
 </html>
