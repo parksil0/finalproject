@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MainMapper">
+
+	<insert id="insert" parameterType="com.spring.withwork.vo.GuestVO">
+		INSERT INTO GUEST(G_NUM, ID, PASSWORD, G_NAME, ADDRESS, EMAIL, PHONE, REGDATE)
+		VALUES(GUEST_SEQ.NEXTVAL, #{id}, #{password}, #{g_name}, #{address}, #{email}, #{phone}, sysdate)
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
