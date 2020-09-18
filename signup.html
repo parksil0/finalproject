@@ -24,11 +24,12 @@
     </div>
     <form id="signup">
         <div class="signupForm">
-            <input type="email" name="id" placeholder="이메일">
-            <input type="password" name="pwd" placeholder="비밀번호">
-            <input type="password" name="pwdConfirm" placeholder="비밀번호 확인">
-            <input type="text" name="name" placeholder="성함">
-            <input type="email" name="email" placeholder="인증받을 이메일">
+            <input type="email" name="id" placeholder="이메일" required>
+            <button type="button" class="checkId">이메일 확인</button>
+            <input type="password" name="pwd" placeholder="비밀번호" required>
+            <input type="password" name="pwdConfirm" placeholder="비밀번호 확인" required>
+            <input type="text" name="name" placeholder="성함" required>
+            <input type="email" name="email" placeholder="인증받을 이메일" required>
         </div>
         <div class="dateOfBirth">           
             <label>Date of birth : </label><br>

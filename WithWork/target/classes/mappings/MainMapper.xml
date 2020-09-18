@@ -5,8 +5,8 @@
 <mapper namespace="MainMapper">
 
 	<insert id="insert" parameterType="com.spring.withwork.vo.GuestVO">
-		INSERT INTO GUEST(G_NUM, ID, PASSWORD, G_NAME, ADDRESS, EMAIL, PHONE, REGDATE)
-		VALUES(GUEST_SEQ.NEXTVAL, #{id}, #{password}, #{g_name}, #{address}, #{email}, #{phone}, sysdate)
+		INSERT INTO GUEST(G_NUM, ID, PASSWORD, G_NAME, EMAIL, REGDATE)
+		VALUES(GUEST_SEQ.NEXTVAL, #{id}, #{password}, #{g_name}, #{email}, sysdate)
 	</insert>
 	
 	<select id="checkId" parameterType="String" resultType="int">
@@ -23,6 +23,14 @@
 	
 	<update id="updatePwd" parameterType="String">
 		
+	</update>
+	 
+	<update id="updateAuthKey" parameterType="com.spring.withwork.vo.GuestVO">
+		update guest set authkey = #{authKey} where id = #{id}
+	</update>
+	
+	<update id="updateAuthStatus" parameterType="com.spring.withwork.vo.GuestVO">
+		update guest set authstatus = #{authStatus} where id = #{id}
 	</update>
 </mapper>
 

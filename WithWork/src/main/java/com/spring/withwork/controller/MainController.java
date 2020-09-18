@@ -7,57 +7,76 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.withwork.service.MainService;
 import com.spring.withwork.vo.GuestVO;
 
 @Controller
-@RequestMapping("/main")
 public class MainController {
 	
 	@Autowired
 	private MainService service;
 	
-	@GetMapping("/register")
-	public void register() {
-		
+	@GetMapping("/register.do")
+	public String register() {
+		return "signup.jsp";
 	}
 	
-	@PostMapping("/register")
-	public String register(GuestVO guest, RedirectAttributes rattr) {
+	@PostMapping("/register.do")
+	public String register(GuestVO guest, RedirectAttributes rattr) throws Exception {
 		System.out.println("/main/register(post)로 접근");
 		System.out.println("GuestVO :  " + guest);
 		service.register(guest);
 		
 		rattr.addFlashAttribute("result", guest.getId());
 		
-		return "redirect:/main/mainPage";
+		return "main.jsp";
 	}
 	
-	@GetMapping("/mainPage")
-	public void mainPage() {
+	@GetMapping("/regiConfirm.do")
+	public String emailConfirm(@ModelAttribute("guest")GuestVO guest, Model model) {
+		System.out.println("email " + guest.getEmail() + " : auto confirmed");
+		guest.setAuthStatus(1);
+		service.updateAuthStatus(guest);
 		
+		model.addAttribute("auto_check", 1);
+		
+		return "main.jsp";
 	}
 	
-	@GetMapping("/checkId")
-	public void checkId(String id, RedirectAttributes rattr) {
+	@GetMapping("/main.do")
+	public String main() {
+		return "main.jsp";
+	}
+	
+	@ResponseBody
+	@GetMapping(value = "/checkId.do")
+	public int checkId(@RequestParam("id")String id, RedirectAttributes rattr) {
 		System.out.println("/main/checkId(get)로 접근");
 		System.out.println("id : " + id);
 		int result = service.checkId(id);
 		
-		if(result == 1) {
+		if(result < 1) {
 			rattr.addFlashAttribute("result", "success");
 		}
 		
 		System.out.println("결과값 : " + result);
-		
+		return result;
 	}
-	
-	@GetMapping("/findId")
+	/*
+	@PostMapping("regPost")
+	public String regPost(@ModelAttribute("guest")GuestVO guest) {
+		System.out.println("현재 ");
+	}
+	*/
+	@GetMapping("/findId.do")
 	public void findId(String email, String name, RedirectAttributes rattr) {
 		System.out.println("/main/findId(get)접근");
 		System.out.println("email : " + email + ", name : " + name);
@@ -74,7 +93,7 @@ public class MainController {
 		}
 	}
 	
-	@GetMapping("/findPassword")
+	@GetMapping("/findPassword.do")
 	public void findPassword(String id, String email, RedirectAttributes rattr) {
 		System.out.println("/main/findPassword(get) 접근");
 		System.out.println("id : " + id + ", name" + email);
@@ -91,7 +110,7 @@ public class MainController {
 		}
 	}
 	
-	@PostMapping("/findPassword")
+	@PostMapping("/findPassword.do")
 	public String findPassword(String password, RedirectAttributes rattr) {
 		System.out.println("/main/findPassword(post) 접근");
 		boolean flag = false;

@@ -12,6 +12,8 @@ public class GuestVO {
 	private String email;
 	private String phone;
 	private Date regdate;
+	private String authKey;
+	private int authStatus;
 		
 	public GuestVO() {
 		
@@ -23,7 +25,7 @@ public class GuestVO {
 	}
 
 	public GuestVO(int g_num, String id, String password, String g_name, String address, String email, String phone,
-			Date regdate) {
+			Date regdate, String authKey, int authStatus) {
 		this.g_num = g_num;
 		this.id = id;
 		this.password = password;
@@ -32,6 +34,7 @@ public class GuestVO {
 		this.email = email;
 		this.phone = phone;
 		this.regdate = regdate;
+		this.authKey = authKey;
 	}
 	
 	public GuestVO(String id, String password, String g_name, String address, String email, String phone) {
@@ -91,12 +94,26 @@ public class GuestVO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	
+	public String getAuthKey() {
+		return authKey;
+	}
+	public void setAuthKey(String authKey) {
+		this.authKey = authKey;
+	}
+	public int getAuthStatus() {
+		return authStatus;
+	}
+	public void setAuthStatus(int authStatus) {
+		this.authStatus = authStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "GuestVO [g_num=" + g_num + ", id=" + id + ", password=" + password + ", g_name=" + g_name + ", address="
-				+ address + ", email=" + email + ", phone=" + phone + ", regdate=" + regdate + "]";
+				+ address + ", email=" + email + ", phone=" + phone + ", regdate=" + regdate + ", authKey=" + authKey
+				+ ", authStatus=" + authStatus + "]";
 	}
-	
+
+
 	
 }

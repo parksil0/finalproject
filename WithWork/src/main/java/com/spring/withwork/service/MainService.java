@@ -7,7 +7,7 @@ import com.spring.withwork.vo.GuestVO;
 
 public interface MainService {
 
-	public void register(GuestVO guest);
+	public void register(GuestVO guest) throws Exception;
 
 	public int checkId(String id);
 
@@ -16,5 +16,7 @@ public interface MainService {
 	public int checkIdPwd(Map map);
 
 	public int updatePwd(String password);
+
+	public void updateAuthStatus(GuestVO guest);
 	
 }

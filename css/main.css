@@ -133,6 +133,15 @@ ul.join_box {
     margin: 0 2%;
     margin-bottom: 30px;
 }
+.checkId {
+    width: 30%;
+    height: 40px;
+    margin: 0 2%;
+    background-color: #272a44;
+    color: #fff;
+    font-size: 15px;
+    float: right;
+}
 
 .dateOfBirth label {
     padding-left: 10px;

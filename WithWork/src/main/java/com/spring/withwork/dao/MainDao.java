@@ -44,4 +44,15 @@ public class MainDao {
 		System.out.println("MainDao.updatePwd() 실행");
 		return mybatis.update("MainMapper.updatePwd", password);
 	}
+
+	public void updateAuthKey(GuestVO guest) {
+		System.out.println("MainDao.updateAuthKey() 실행");
+		mybatis.update("MainMapper.updateAuthKey", guest);
+		
+	}
+
+	public void updateAuthStatus(GuestVO guest) {
+		System.out.println("MainDao.updateAuthStatus() 실행");
+		mybatis.update("MainMapper.updateAuthStatus", guest);
+	}
 }
