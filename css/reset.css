@@ -11,6 +11,10 @@
     text-decoration: none; 
 }
 
+::-webkit-scrollbar { height:3px; width:3px; }
+::-webkit-scrollbar-track { background: #edecf1; }
+::-webkit-scrollbar-thumb { background: #272a44; }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {

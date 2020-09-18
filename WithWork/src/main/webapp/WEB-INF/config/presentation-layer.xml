@@ -32,10 +32,7 @@
 			</props>
 		</property>
 	</bean>
-	
-	<!-- JSON 데이터 전환 관련 설정 -->
-	<!-- JSON 변환관련 HttpMessageConverter(인터페이스) 를 구현한 객체
-		MappingJackson2HttpMessageConverter 객체 사용-->
+
 	<mvc:annotation-driven></mvc:annotation-driven>
 </beans>
 

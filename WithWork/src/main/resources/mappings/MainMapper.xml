@@ -9,6 +9,21 @@
 		VALUES(GUEST_SEQ.NEXTVAL, #{id}, #{password}, #{g_name}, #{address}, #{email}, #{phone}, sysdate)
 	</insert>
 	
+	<select id="checkId" parameterType="String" resultType="int">
+		select count(id) from guest where id = #{id}
+	</select>
+	
+	<select id="findId" parameterType="Map" resultType="String">
+		select id from guest where email = #{email} and g_name = #{name}
+	</select>
+	
+	<select id="checkIdPwd" parameterType="Map" resultType="int">
+		select count(*) from guest where id = #{id} and email = #{email}
+	</select>
+	
+	<update id="updatePwd" parameterType="String">
+		
+	</update>
 </mapper>
 
 

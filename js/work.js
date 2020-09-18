@@ -13,10 +13,10 @@ $().ready(function(){
         $(".workPopup").show();
         $(".darkBack").show();
     });
-
-    // 팝업닫기
-    $(".popupOK").click(function(){
-        $(".workPopup").hide();
-        $(".darkBack").hide();
+    
+    $(".workAddBtn").click(function(){
+        $(".workAddPopup").show();
+        $(".darkBack").show();
     });
+
 });

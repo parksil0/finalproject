@@ -31,6 +31,9 @@ public class MainControllerTests {
 	}
 	
 	
+	/*
+	 * 회원가입이 정상작동하는지에 대한 테스트
+	 * 
 	@Test
 	public void testRegister() throws Exception {
 		
@@ -44,5 +47,38 @@ public class MainControllerTests {
 				).andReturn().getModelAndView().getViewName();
 		
 		System.out.println("테스트 insert 결과 resultPage : " + resultPage);
+	}
+	*/
+	
+	/*
+	 * 회원가입 시 아이디 중복을 방지하기 위한 테스트
+	 * 
+	@Test
+	public void testCheckId() throws Exception {
+		System.out.println(mockMvc.perform(MockMvcRequestBuilders
+				.get("/main/checkId")
+				.param("id", "test_ID"))
+				.andReturn().getModelAndView().getModelMap());
+	}
+	*/
+	
+	/*
+	 * 아이디 찾기
+	 * 
+	@Test
+	public void testFindId() throws Exception {
+		System.out.println(mockMvc.perform(MockMvcRequestBuilders.get("/main/findId")
+				.param("name", "test")
+				.param("email", "test@test.com"))
+				.andReturn().getModelAndView().getModelMap());
+	}
+	*/
+	
+	@Test
+	public void testCheckIdPwd() throws Exception {
+		System.out.println(mockMvc.perform(MockMvcRequestBuilders.get("/main/findPassword")
+				.param("id", "test")
+				.param("email", "test@test.com"))
+				.andReturn().getModelAndView().getModelMap());
 	}
 }

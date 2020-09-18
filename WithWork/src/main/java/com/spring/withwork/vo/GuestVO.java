@@ -17,6 +17,11 @@ public class GuestVO {
 		
 	}
 	
+	public GuestVO(String id) {
+		super();
+		this.id = id;
+	}
+
 	public GuestVO(int g_num, String id, String password, String g_name, String address, String email, String phone,
 			Date regdate) {
 		this.g_num = g_num;

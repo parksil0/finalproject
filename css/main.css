@@ -23,6 +23,7 @@
 #joinForm {
     width: 460px;
     margin: 0px auto;
+    border: 1px solid #ddd;
 }
 
 ul.join_box {
@@ -74,6 +75,8 @@ ul.join_box {
     height: 60px;
 }
 
+
+
 .footBtwrap li button, .footBtwrap li button a {
     display: block; 
     width: 100%;
@@ -81,6 +84,7 @@ ul.join_box {
     font-size: 20px;
     text-align: center;
     line-height: 60px;
+    border-radius: 60px;
 }
 
 .fpmgBt1 a {
@@ -123,7 +127,7 @@ ul.join_box {
     position: relative;
     float: left;
     height: 50px;
-    border: 1px solid gray;
+    border: 1px solid #ddd;
     width: 94%;
     padding-left: 10px;
     margin: 0 2%;
@@ -135,7 +139,7 @@ ul.join_box {
 }
 
 .dateOfBirth input {
-    border: 1px solid gray;
+    border: 1px solid #ddd;
     width: 26.1%;
     height: 50px;
     margin: 0 2%;
@@ -143,7 +147,7 @@ ul.join_box {
     padding-left: 10px;
 }
 
-.signupBtn button{
+.signupBtn{
     width: 96%;
     height: 50px;
     margin: 0 2%;
@@ -177,7 +181,7 @@ ul.join_box {
     position: relative;
     float: left;
     height: 50px;
-    border: 1px solid gray;
+    border: 1px solid #ddd;
     width: 94%;
     padding-left: 10px;
     margin: 0 2%;
@@ -191,6 +195,7 @@ ul.join_box {
     background-color: #272a44;
     color: #fff;
     font-size: 20px;
+    border-radius: 50px;
 }
 
 .findIdPwd {   
@@ -216,6 +221,7 @@ hr {
     margin: 0 2%;
     font-size: 20px; 
     margin-top: 5px;
+    border-radius: 50px;
 }
 
 .otherLogin1 {
@@ -271,6 +277,7 @@ hr {
     background: black;
     opacity: .6;
     z-index: 10;
+    top: 0px;
 }
 
 .popup dt {
