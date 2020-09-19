@@ -18,5 +18,7 @@ public interface MainService {
 	public int updatePwd(String password);
 
 	public void updateAuthStatus(GuestVO guest);
+
+	public int login(GuestVO guest);
 	
 }

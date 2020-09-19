@@ -213,13 +213,6 @@ ul.join_box {
     margin-top: 10px;
 }
 
-hr {
-    width: 460px;
-    height: 1px;
-    background-color: rgb(151, 151, 151);
-    margin: 3px;
-}
-
 .otherLoginBtn{
     margin-top: 30px;
 }
@@ -243,23 +236,22 @@ hr {
     color: black;
 }
 
-#mainNav li{
-    float: left;
-    position: relative;
-    margin: 15px 30px;
-}
 
 .login {
     cursor: pointer;
 }
 
-#mainNav li:first-child a {
+.homePage a {
+	float: left;
+    position: relative;
+    margin: 15px 30px;
     font-size: 30px;
     font-weight: 500;
 }
 
-#mainNav li:nth-child(n+2) {
+.snsLink, .login, .client, .logout{
     float: right;
+    margin: 15px 30px;
 }
 
 /* 팝업 */

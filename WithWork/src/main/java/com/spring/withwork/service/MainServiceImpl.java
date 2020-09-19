@@ -53,7 +53,7 @@ public class MainServiceImpl implements MainService{
 				.append(authkey)
 				.append("' target='_blenk'>이메일 인증 확인</a>")
 				.toString());
-		sendMail.setFrom("WiwhWork", "WiwhWork");
+		sendMail.setFrom("WithWork", "WithWork");
 		sendMail.setTo(guest.getEmail());
 		sendMail.send();
 	}
@@ -90,5 +90,11 @@ public class MainServiceImpl implements MainService{
 	public int updatePwd(String password) {
 		System.out.println("MainServiceImpl.updatePwd() 실행");
 		return mainDao.updatePwd(password);
+	}
+	
+	@Override
+	public int login(GuestVO guest) {
+		System.out.println("MainServiceImpl.login() 실행");
+		return mainDao.login(guest);
 	}
 }

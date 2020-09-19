@@ -55,4 +55,9 @@ public class MainDao {
 		System.out.println("MainDao.updateAuthStatus() 실행");
 		mybatis.update("MainMapper.updateAuthStatus", guest);
 	}
+
+	public int login(GuestVO guest) {
+		System.out.println("MainDao.login() 실행");
+		return mybatis.selectOne("MainMapper.login", guest);
+	}
 }

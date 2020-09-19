@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,19 +27,46 @@ public class MainController {
 	@Autowired
 	private MainService service;
 	
+	@GetMapping("/join.do")
+	public String join() {
+		return "join.jsp";
+	}
+	
 	@GetMapping("/register.do")
 	public String register() {
 		return "signup.jsp";
 	}
 	
+	@ResponseBody
+	@PostMapping("/login.do")
+	public int login(GuestVO guest, HttpServletRequest request) {
+		System.out.println("/login(), get 접근");
+		int result = service.login(guest);
+		
+		HttpSession session = request.getSession();
+		
+		if(result == 1) {
+			session.setAttribute("id", guest.getId());
+		}
+		
+		return result;
+	}
+	
+	@GetMapping("/logout.do")
+	public String logout(HttpSession session) {
+		System.out.println("/logout(), get접근");
+		System.out.println("session값 초기화, 로그아웃");
+		session.invalidate();
+		return "main.jsp";
+	}
+	
 	@PostMapping("/register.do")
-	public String register(GuestVO guest, RedirectAttributes rattr) throws Exception {
-		System.out.println("/main/register(post)로 접근");
+	public String register(GuestVO guest, Model model) throws Exception {
+		System.out.println("/register(), post 접근");
 		System.out.println("GuestVO :  " + guest);
 		service.register(guest);
 		
-		rattr.addFlashAttribute("result", guest.getId());
-		
+		model.addAttribute("regResult", 2);
 		return "main.jsp";
 	}
 	
@@ -45,9 +75,9 @@ public class MainController {
 		System.out.println("email " + guest.getEmail() + " : auto confirmed");
 		guest.setAuthStatus(1);
 		service.updateAuthStatus(guest);
+		System.out.println("전달받은 guest 값 : " + guest);
 		
-		model.addAttribute("auto_check", 1);
-		
+		model.addAttribute("regResult", 1);
 		return "main.jsp";
 	}
 	
@@ -58,27 +88,19 @@ public class MainController {
 	
 	@ResponseBody
 	@GetMapping(value = "/checkId.do")
-	public int checkId(@RequestParam("id")String id, RedirectAttributes rattr) {
-		System.out.println("/main/checkId(get)로 접근");
+	public int checkId(@RequestParam("id")String id) {
+		System.out.println("/checkId(), get 접근");
 		System.out.println("id : " + id);
 		int result = service.checkId(id);
-		
-		if(result < 1) {
-			rattr.addFlashAttribute("result", "success");
-		}
 		
 		System.out.println("결과값 : " + result);
 		return result;
 	}
-	/*
-	@PostMapping("regPost")
-	public String regPost(@ModelAttribute("guest")GuestVO guest) {
-		System.out.println("현재 ");
-	}
-	*/
+
+	
 	@GetMapping("/findId.do")
 	public void findId(String email, String name, RedirectAttributes rattr) {
-		System.out.println("/main/findId(get)접근");
+		System.out.println("/findId(), get 접근");
 		System.out.println("email : " + email + ", name : " + name);
 		
 		List<String> getIdList = new ArrayList<>();
@@ -88,14 +110,12 @@ public class MainController {
 		getIdList = service.findId(map);
 		
 		System.out.println("검색 결과 아이디 : " + getIdList);
-		if(getIdList != null ) {
-			rattr.addFlashAttribute("result", "success");
-		}
+
 	}
 	
 	@GetMapping("/findPassword.do")
 	public void findPassword(String id, String email, RedirectAttributes rattr) {
-		System.out.println("/main/findPassword(get) 접근");
+		System.out.println("/findPassword(), get 접근");
 		System.out.println("id : " + id + ", name" + email);
 		
 		Map<String, String> map = new HashMap<>();
@@ -104,15 +124,12 @@ public class MainController {
 		
 		int result = service.checkIdPwd(map);
 		System.out.println("결과값 result : " + result);
-		if(result == 1) {
-			rattr.addFlashAttribute("result", "success");
-			rattr.addFlashAttribute("id", id);
-		}
+		
 	}
 	
 	@PostMapping("/findPassword.do")
 	public String findPassword(String password, RedirectAttributes rattr) {
-		System.out.println("/main/findPassword(post) 접근");
+		System.out.println("/findPassword(), post 접근");
 		boolean flag = false;
 		if(password != null) {
 			flag = true;
@@ -120,9 +137,6 @@ public class MainController {
 		System.out.println("Password is not null? : " + flag);
 		int result = service.updatePwd(password);
 		
-		if(result == 1) {
-			rattr.addFlashAttribute("result", "success");
-		}
 		return "redirect:/main/mainPage";
 	}
 	

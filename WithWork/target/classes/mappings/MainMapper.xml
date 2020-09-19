@@ -32,6 +32,10 @@
 	<update id="updateAuthStatus" parameterType="com.spring.withwork.vo.GuestVO">
 		update guest set authstatus = #{authStatus} where id = #{id}
 	</update>
+	
+	<select id="login" parameterType="com.spring.withwork.vo.GuestVO" resultType="int">
+		select count(id) from guest where id = #{id} and password = #{password}
+	</select>
 </mapper>
 
 
