@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-
+	<meta charset="UTF-8">
+	
     <!-- font-family: 'Montserrat', sans-serif; -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,500i,600,600i,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&subset=korean" rel="stylesheet">
@@ -22,7 +22,16 @@
      
 </head>
 <body>
-<%@ include file="include/nav.jsp" %>
+	<%@ include file="include/nav.jsp" %>
+	<form id="signup" action="register.do" method="post">
+        <div class="signupForm">
+            <input type="text" name="name" placeholder="그룹 이름">
+            <input type="text" name="g_name" placeholder="성함">
+        </div>
+        <div>
+            <button type="button" class="loginBtn">그 룹 생 성</button>
+        </div>
+    </form>
+	
 </body>
-
 </html>

@@ -179,9 +179,10 @@
 				return;
 			};
 			
-			
 			formObj.submit();
+			
 		});
+		
 	});
 </script>
 </html>

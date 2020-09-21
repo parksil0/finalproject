@@ -13,12 +13,14 @@ public interface MainService {
 
 	public List<String> findId(Map map);
 
-	public int checkIdPwd(Map map);
+	public int chkId(GuestVO guest);
 
-	public int updatePwd(String password);
+	public int updatePwd(GuestVO guest);
 
 	public void updateAuthStatus(GuestVO guest);
 
 	public int login(GuestVO guest);
+
+	public GuestVO guestInfo(GuestVO guest);
 	
 }

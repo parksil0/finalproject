@@ -33,16 +33,16 @@ public class MainDao {
 		return list;
 	}
 
-	public int checkIdPwd(Map map) {
-		System.out.println("MainDao.checkIdPwd() 실행");
-		System.out.println("map : " + map);
-		int result = mybatis.selectOne("MainMapper.checkIdPwd", map);
+	public int chkId(GuestVO guest) {
+		System.out.println("MainDao.chkId() 실행");
+		System.out.println("guest : " + guest);
+		int result = mybatis.selectOne("MainMapper.chkId", guest);
 		return result;
 	}
 
-	public int updatePwd(String password) {
+	public int updatePwd(GuestVO guest) {
 		System.out.println("MainDao.updatePwd() 실행");
-		return mybatis.update("MainMapper.updatePwd", password);
+		return mybatis.update("MainMapper.updatePwd", guest);
 	}
 
 	public void updateAuthKey(GuestVO guest) {
@@ -59,5 +59,10 @@ public class MainDao {
 	public int login(GuestVO guest) {
 		System.out.println("MainDao.login() 실행");
 		return mybatis.selectOne("MainMapper.login", guest);
+	}
+
+	public GuestVO guestInfo(GuestVO guest) {
+		System.out.println("MainDao.guestInfo() 실행");
+		return mybatis.selectOne("MainMapper.guestInfo", guest);
 	}
 }

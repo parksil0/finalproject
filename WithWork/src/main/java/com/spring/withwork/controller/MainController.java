@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -39,17 +40,23 @@ public class MainController {
 	
 	@ResponseBody
 	@PostMapping("/login.do")
-	public int login(GuestVO guest, HttpServletRequest request) {
-		System.out.println("/login(), get 접근");
+	public int login(GuestVO guest, HttpSession session) {
+		System.out.println("/login(), post 접근");
 		int result = service.login(guest);
-		
-		HttpSession session = request.getSession();
 		
 		if(result == 1) {
 			session.setAttribute("id", guest.getId());
 		}
 		
 		return result;
+	}
+	
+	@PostMapping("loginSuccess.do")
+	public String loginSuccess(GuestVO guest, HttpSession session) {
+		System.out.println("/loginSuccess(), post 접근");
+		guest = service.guestInfo(guest);
+		session.setAttribute("g_name", guest.getG_name());
+		return "main.jsp";
 	}
 	
 	@GetMapping("/logout.do")
@@ -97,7 +104,6 @@ public class MainController {
 		return result;
 	}
 
-	
 	@GetMapping("/findId.do")
 	public void findId(String email, String name, RedirectAttributes rattr) {
 		System.out.println("/findId(), get 접근");
@@ -113,31 +119,34 @@ public class MainController {
 
 	}
 	
-	@GetMapping("/findPassword.do")
-	public void findPassword(String id, String email, RedirectAttributes rattr) {
-		System.out.println("/findPassword(), get 접근");
-		System.out.println("id : " + id + ", name" + email);
+	@ResponseBody
+	@PostMapping("/findPassword.do")
+	public int findPassword(GuestVO guest, Model model) {
+		System.out.println("/findPassword(), post 접근");
+		System.out.println("회원 정보 : " + guest);
 		
-		Map<String, String> map = new HashMap<>();
-		map.put("id", id);
-		map.put("email", email);
 		
-		int result = service.checkIdPwd(map);
+		int result = service.chkId(guest);
+		if(result > 0) {
+			model.addAttribute("resultId", guest.getId());
+		}
 		System.out.println("결과값 result : " + result);
-		
+		return result;
 	}
 	
-	@PostMapping("/findPassword.do")
-	public String findPassword(String password, RedirectAttributes rattr) {
-		System.out.println("/findPassword(), post 접근");
-		boolean flag = false;
-		if(password != null) {
-			flag = true;
-		}
-		System.out.println("Password is not null? : " + flag);
-		int result = service.updatePwd(password);
-		
-		return "redirect:/main/mainPage";
+	@ResponseBody
+	@PostMapping("/updatePassword.do")
+	public int updatePassword(GuestVO guest) {
+		System.out.println("/updatePassword(), post 접근");
+		System.out.println("정보 : " + guest);
+		int result = service.updatePwd(guest);
+		System.out.println("result : " + result);
+		return result;
+	}
+	
+	@GetMapping("insertGroup.do")
+	public String insertGroup() {
+		return "group.jsp";
 	}
 	
 }

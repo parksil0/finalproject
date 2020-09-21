@@ -80,21 +80,26 @@ public class MainServiceImpl implements MainService{
 	}
 	
 	@Override
-	public int checkIdPwd(Map map) {
-		System.out.println("MainServiceImpl.checkIdPwd() 실행");
-		System.out.println("map : " + map);
-		return mainDao.checkIdPwd(map);
+	public int chkId(GuestVO guest) {
+		System.out.println("MainServiceImpl.chkId() 실행");
+		return mainDao.chkId(guest);
 	}
 	
 	@Override
-	public int updatePwd(String password) {
+	public int updatePwd(GuestVO guest) {
 		System.out.println("MainServiceImpl.updatePwd() 실행");
-		return mainDao.updatePwd(password);
+		return mainDao.updatePwd(guest);
 	}
 	
 	@Override
 	public int login(GuestVO guest) {
 		System.out.println("MainServiceImpl.login() 실행");
 		return mainDao.login(guest);
+	}
+	
+	@Override
+	public GuestVO guestInfo(GuestVO guest) {
+		System.out.println("MainServiceImpl.guestInfo() 실행");
+		return mainDao.guestInfo(guest);
 	}
 }

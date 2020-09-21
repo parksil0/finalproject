@@ -17,12 +17,12 @@
 		select id from guest where email = #{email} and g_name = #{name}
 	</select>
 	
-	<select id="checkIdPwd" parameterType="Map" resultType="int">
-		select count(*) from guest where id = #{id} and email = #{email}
+	<select id="chkId" parameterType="com.spring.withwork.vo.GuestVO" resultType="int">
+		select count(*) from guest where id = #{id} and g_name = #{g_name}
 	</select>
 	
-	<update id="updatePwd" parameterType="String">
-		
+	<update id="updatePwd" parameterType="com.spring.withwork.vo.GuestVO">
+		update guest set password = #{password} where id = #{id}
 	</update>
 	 
 	<update id="updateAuthKey" parameterType="com.spring.withwork.vo.GuestVO">
@@ -34,7 +34,13 @@
 	</update>
 	
 	<select id="login" parameterType="com.spring.withwork.vo.GuestVO" resultType="int">
-		select count(id) from guest where id = #{id} and password = #{password}
+		select count(*) from guest where id = #{id} and password = #{password} and authstatus = 1
+	</select>
+	
+	<select id="guestInfo"  parameterType="com.spring.withwork.vo.GuestVO"
+		resultType="com.spring.withwork.vo.GuestVO">
+	
+		select g_name from guest where id = #{id}		
 	</select>
 </mapper>
 

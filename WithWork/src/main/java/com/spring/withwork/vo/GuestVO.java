@@ -19,9 +19,8 @@ public class GuestVO {
 		
 	}
 	
-	public GuestVO(String id) {
-		super();
-		this.id = id;
+	public GuestVO(String g_name) {
+		this.g_name = g_name;
 	}
 
 	public GuestVO(int g_num, String id, String password, String g_name, String address, String email, String phone,

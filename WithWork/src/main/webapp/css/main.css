@@ -165,8 +165,18 @@ ul.join_box {
     font-size: 20px;
 }
 
+.subMenu {
+	display: none;
+	float: none;
+}
 
+.client:hover .subMenu {
+	display: block;
+}
 
+.mainPopup {
+	width: 320px;
+}
 
 /* 로그인 화면(mainPage.html) */
 
@@ -186,7 +196,7 @@ ul.join_box {
     padding-bottom: 60px;
 }
 
-.loginForm input {
+.navForm input {
     position: relative;
     float: left;
     height: 50px;
@@ -197,41 +207,38 @@ ul.join_box {
     margin-bottom: 30px;
 }
 
-.loginBtn {
+.navBtn button {
     width: 96%;
     height: 50px;
     margin: 0 2%;
-    background-color: #272a44;
-    color: #fff;
     font-size: 20px;
+    margin-top: 5px;
     border-radius: 50px;
+    cursor: pointer;
 }
 
-.findIdPwd {   
+#findIdPwd {   
     float: right;
     margin: 0 2%;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .otherLoginBtn{
     margin-top: 30px;
 }
 
-.otherLoginBtn button{
-    width: 96%;
-    height: 50px;
-    margin: 0 2%;
-    font-size: 20px; 
-    margin-top: 5px;
-    border-radius: 50px;
+.defaultBtn {
+	background-color: #272a44;
+    color: #fff;
 }
 
-.otherLogin1 {
+.googleBtn {
     background-color: #EE4A4A;
     color: white;
 }
 
-.otherLogin2 {
+.kakaoBtn {
     background-color: #FAFA39;
     color: black;
 }
@@ -304,6 +311,7 @@ ul.join_box {
     font-size: 0;
     margin-top: 20px;
     width: 100%;
+    background-color: #ddd;
 }
 
 .popup .btnBox a {
@@ -349,4 +357,10 @@ ul.join_box {
     font-weight: bold;
     display: inline-block; 
     width: 16px;
+}
+
+/*공통*/
+
+.displayNone {
+	display: none;
 }
