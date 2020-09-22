@@ -14,6 +14,7 @@
             			<ul class="subMenu">
             				<li><a href="insertGroup.do">그룹 생성</a></li>
             				<li><a href="todo.jsp">나의 그룹</a></li>
+            				<li><a href="myPage.do">마이 페이지</a></li>
             			</ul>
             		</li>
             		<li class="logout"><a href="logout.do">로그아웃</a></li>
@@ -43,8 +44,8 @@
                     <br><br><br>
                 </form>
                 <div class="navBtn">
-                    <button class="googleBtn">Google 로그인</button>
-                    <button class="kakaoBtn">Kakao 로그인</button>
+                    <button class="googleBtn" onclick="location.href='google.do'">Google 로그인</button>
+                    <button class="kakaoBtn" onclick="location.href='kakao.do'">Kakao 로그인</button>
                 </div>
             </dd>
         </dl>
@@ -76,12 +77,22 @@
 						</div>
 					</form>
 				</div>
+				<div class="displayNone findPwdPopup2">
+					<form class="navForm findPwdForm2" action="updatePassword.do" method="post">
+						<input type="password" name="password" id="chkPwd" placeholder="비밀번호">
+						<input type="password" name="password2" id="chkPwd2" placeholder="비밀번호 확인">
+						<input type="hidden" name="id" value="${resultId }" >
+						<div class="navBtn">
+							<button class="defaultBtn updatePwd">확 인</button>
+						</div>
+					</form>
+				</div>
 				<div class="displayNone findIdPopup">
 					<form class="navForm findIdForm" action="findId.do" method="post">
 						<input type="text" name="email" id="findEmail" placeholder="가입 당시 인증했던 이메일 주소">
 						<input type="text" name="g_name" id="findName2" placeholder="이름">
 						<div class="navBtn">
-							<button class="defaultBtn">확 인</button>
+							<button class="defaultBtn chkId2">확 인</button>
 						</div>
 					</form>
 				</div>
@@ -208,6 +219,7 @@
 			
 			id = $("#findId").val();
 			var g_name = $("#findName").val();
+			
 			$.ajax({
 				url: "findPassword.do",
 				type: "post",
@@ -215,12 +227,8 @@
 				success: function(data) {
 					console.log("전달받은 값 : " + data);
 					if(parseInt(data) == 1) {
-						str += '<form class="navForm findPwdForm" action="updatePassword.do" method="post">';
-						str += '<input type="password" name="password" id="chkPwd" placeholder="비밀번호">';
-						str += '<input type="password" name="password2" id="chkPwd2" placeholder="비밀번호 확인">';
-						str += '<input type="hidden" name="id" value="${resultId}" >';
-						str += '<div class="navBtn"><button class="defaultBtn updatePwd">확 인</button></div></form>';
-						$(".findPwdPopup").html(str);
+						$(".findPwdPopup").hide();
+						$(".findPwdPopup2").show();
 					} else {
 						$(".notiMsg").html("입력한 정보가 일치하지 않습니다.");
 						$("#findId").val('');
@@ -238,12 +246,13 @@
 			
 			e.preventDefault();
 			
-			pwd1 = $(".chkPwd").val();
-			pwd2 = $(".chkPwd2").val();
-			alert("id : " + id);
-			
-			if(pwd1 == pwd2) {
+			pwd1 = $("#chkPwd").val();
+			pwd2 = $("#chkPwd2").val();
+			console.log("pwd1 : " + pwd1 + "pwd2 : " + pwd2);
+			if(pwd1 === pwd2) {
+				alert("맞아");
 			} else {
+				alert("틀려;");
 				$(".notiMsg").html("비밀번호가 일치하지 않습니다.<br>다시 입력해 주세요.");
 				pwd1.val('');
 				pwd2.val('');
@@ -251,12 +260,15 @@
 				return;
 			}
 			console.log("비밀번호 변경 id : " + id);
+			
 			$.ajax({
 				url: "updatePassword.do",
 				type: "post",
+				data: "id=" + id + "&password=" + pwd1,
 				success: function(data) {
 					
 					if(parseInt(data) == 1) {
+						console.log("암호 변경처리 됐?? : " + data);
 						$(".notiMsg").html("비밀번호가 변경되었습니다.");
 						$(".okBtn").html("<a href='main.do'>확인</a>");
 						openPopup();
@@ -268,5 +280,27 @@
 			});
 		});
 		
+		$(".chkId2").on("click", function(e){
+			
+			e.preventDefault();
+			findEmail = $("#findEmail").val();
+			findName2 = $("#findName2").val();
+			console.log("email : " + findEmail + ", name : " + findName2);
+			
+			$.ajax({
+				url: "findId.do",
+				type: "post",
+				data: "g_name=" + findName2 + "&email=" + findEmail,
+				success: function(data) {
+					console.log("FindId id : " + data);
+					$(".notiMsg").html("찾으시는 아이디는 " + data + " 입니다.");
+					$(".okBtn").html("<a href='main.do'>확인</a>");
+					openPopup();
+				},
+				error: function(error) {
+					alert(error);
+				}
+			});
+		});
 	});
 </script>

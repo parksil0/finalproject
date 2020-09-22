@@ -3,6 +3,7 @@ package com.spring.withwork.service;
 import java.util.List;
 import java.util.Map;
 
+import com.spring.withwork.vo.CompanyVO;
 import com.spring.withwork.vo.GuestVO;
 
 public interface MainService {
@@ -11,7 +12,7 @@ public interface MainService {
 
 	public int checkId(String id);
 
-	public List<String> findId(Map map);
+	public String findId(GuestVO guest);
 
 	public int chkId(GuestVO guest);
 
@@ -22,5 +23,7 @@ public interface MainService {
 	public int login(GuestVO guest);
 
 	public GuestVO guestInfo(GuestVO guest);
+
+	public int insertGroup(CompanyVO company, GuestVO guest);
 	
 }

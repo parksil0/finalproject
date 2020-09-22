@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,19 +19,6 @@
     
     <title>withWork</title>
      
-</head>
-<body>
-	<%@ include file="include/nav.jsp" %>
-	<form id="signup" action="insertGroup.do" method="post">
-        <div class="signupForm">
-            <input type="text" name="name" placeholder="그룹 이름">
-            <input type="text" name="subject" placeholder="주제">
-            <input type="hidden" name="id" value="${sessionScope.id }">
-        </div>
-        <div class="navBtn">
-            <button class="defaultBtn insertGroup">그 룹 생 성</button>
-        </div>
-    </form>
-	
 </body>
+	<%@ include file="include/nav.jsp" %>
 </html>

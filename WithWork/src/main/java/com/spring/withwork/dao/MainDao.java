@@ -1,12 +1,13 @@
 package com.spring.withwork.dao;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.withwork.vo.CompanyVO;
 import com.spring.withwork.vo.GuestVO;
 
 @Repository
@@ -25,12 +26,11 @@ public class MainDao {
 		return mybatis.selectOne("MainMapper.checkId", id);
 	}
 
-	public List<String> findId(Map map) {
+	public String findId(GuestVO guest) {
 		System.out.println("MainDao.findId() 실행");
-		System.out.println("map : " + map);
-		List<String> list = mybatis.selectList("MainMapper.findId", map);
-		System.out.println("MAINDAO List : " + list);
-		return list;
+		System.out.println("guest : " + guest);
+		String id = mybatis.selectOne("MainMapper.findId", guest);
+		return id;
 	}
 
 	public int chkId(GuestVO guest) {
@@ -64,5 +64,15 @@ public class MainDao {
 	public GuestVO guestInfo(GuestVO guest) {
 		System.out.println("MainDao.guestInfo() 실행");
 		return mybatis.selectOne("MainMapper.guestInfo", guest);
+	}
+
+	public int insertGroup(CompanyVO company, GuestVO guest) {
+		System.out.println("MainDao.insertGroup() 실행");
+		Map<String, String> map = new HashMap<>();
+		map.put("name", company.getName());
+		map.put("subject", company.getSubject());
+		map.put("id", guest.getId());
+		System.out.println("map : " + map);
+		return mybatis.insert("MainMapper.insertGroup", map);
 	}
 }

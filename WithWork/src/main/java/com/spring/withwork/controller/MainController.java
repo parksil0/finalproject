@@ -1,10 +1,5 @@
 package com.spring.withwork.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.withwork.service.MainService;
+import com.spring.withwork.vo.CompanyVO;
 import com.spring.withwork.vo.GuestVO;
 
 @Controller
@@ -104,32 +97,31 @@ public class MainController {
 		return result;
 	}
 
-	@GetMapping("/findId.do")
-	public void findId(String email, String name, RedirectAttributes rattr) {
+	@ResponseBody
+	@PostMapping("/findId.do")
+	public String findId(GuestVO guest, Model model) {
 		System.out.println("/findId(), get 접근");
-		System.out.println("email : " + email + ", name : " + name);
+		System.out.println("guest : " + guest);
 		
-		List<String> getIdList = new ArrayList<>();
-		Map<String, String> map = new HashMap<>();
-		map.put("email", email);
-		map.put("name", name);
-		getIdList = service.findId(map);
+		String id = service.findId(guest);
 		
-		System.out.println("검색 결과 아이디 : " + getIdList);
-
+		System.out.println("검색 결과 아이디 : " + id);
+		return id;
 	}
 	
 	@ResponseBody
 	@PostMapping("/findPassword.do")
-	public int findPassword(GuestVO guest, Model model) {
+	public int findPassword(GuestVO guest, HttpSession session) {
 		System.out.println("/findPassword(), post 접근");
 		System.out.println("회원 정보 : " + guest);
 		
-		
 		int result = service.chkId(guest);
+		
 		if(result > 0) {
-			model.addAttribute("resultId", guest.getId());
+			session.setAttribute("resultId", guest.getId());
+			System.out.println("guest id : " + guest.getId());
 		}
+		
 		System.out.println("결과값 result : " + result);
 		return result;
 	}
@@ -147,6 +139,20 @@ public class MainController {
 	@GetMapping("insertGroup.do")
 	public String insertGroup() {
 		return "group.jsp";
+	}
+	
+	@PostMapping("insertGroup.do")
+	public String insertGroup(CompanyVO company, GuestVO guest) {
+		System.out.println("/insertGroup(), post 접근");
+		System.out.println("company 정보 : " + company);
+		System.out.println("guest 정보 : " + guest);
+		int result = service.insertGroup(company, guest);
+		return "todo.jsp";
+	}
+	
+	@GetMapping("/myPage.do")
+	public String myPage() {
+		return "myPage.jsp";
 	}
 	
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.withwork.dao.MainDao;
+import com.spring.withwork.vo.CompanyVO;
 import com.spring.withwork.vo.GuestVO;
 import com.spring.withwork.vo.MailUtils;
 import com.spring.withwork.vo.TempKey;
@@ -73,10 +74,10 @@ public class MainServiceImpl implements MainService{
 	}
 	
 	@Override
-	public List<String> findId(Map map) {
+	public String findId(GuestVO guest) {
 		System.out.println("MainServiceImpl.findId() 실행");
-		System.out.println("map : " + map);
-		return mainDao.findId(map);
+		System.out.println("guest : " + guest);
+		return mainDao.findId(guest);
 	}
 	
 	@Override
@@ -101,5 +102,11 @@ public class MainServiceImpl implements MainService{
 	public GuestVO guestInfo(GuestVO guest) {
 		System.out.println("MainServiceImpl.guestInfo() 실행");
 		return mainDao.guestInfo(guest);
+	}
+	
+	@Override
+	public int insertGroup(CompanyVO company, GuestVO guest) {
+		System.out.println("MainServiceImpl.insertGroup() 실행");
+		return mainDao.insertGroup(company, guest);
 	}
 }
