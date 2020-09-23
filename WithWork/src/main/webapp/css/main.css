@@ -1,5 +1,5 @@
 
-/* 약관동의 화면(joinForm.html) */
+/* 약관동의 화면(joinForm.jsp) */
 
 .clearfix::after {
     content: "";
@@ -100,7 +100,7 @@ ul.join_box {
 
 
 
-/* 회원가입 화면(signup.html) */
+/* 회원가입 화면(signup.jsp) */
 
 
 
@@ -178,10 +178,7 @@ ul.join_box {
 	width: 320px;
 }
 
-/* 메인 화면(main.html) */
-
-
-
+/* 메인메뉴 nav (nav.jsp) */
 
 #login {
     width: 460px;
