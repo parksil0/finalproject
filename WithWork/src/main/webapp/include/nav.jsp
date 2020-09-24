@@ -49,7 +49,11 @@
                     <br><br><br>
                 </form>
                 <div class="navBtn">
-                    <button class="googleBtn" onclick="location.href='google.do'">Google 로그인</button>
+                    <button class="googleBtn" onclick="
+                    	gauth.signIn().then(function(){
+                    		console.log('gauth.signIn()');
+                    	})
+                    ">Google 로그인</button>
                     <button class="kakaoBtn" onclick="location.href='kakao.do'">Kakao 로그인</button>
                 </div>
             </dd>
@@ -106,3 +110,7 @@
     </div>
     
     <div class="darkBack"></div>
+    
+    <script>
+    	var result = '<c:out value="${regResult}" />';
+    </script>

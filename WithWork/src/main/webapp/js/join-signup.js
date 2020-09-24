@@ -53,16 +53,17 @@
 
 		var id = $("#id").val();
 		
-		
 		if(id == "") {
-			$(".signupMessage").html("아이디를 입력해주세요.");
-			openPopup();
+			alert("아이디를 입력해주세요.");
+			//$(".signupMessage").html("아이디를 입력해주세요.");
+			//openPopup();
 			return;
 		}
 		
 		if(!CheckEmail(id)) {
-			$(".signupMessage").html("이메일 형식으로 입력해주세요.");
-			openPopup();
+			alert("이메일 형식으로 입력해주세요.");
+			//$(".signupMessage").html("이메일 형식으로 입력해주세요.");
+			//openPopup();
 			return;
 		};
 		
@@ -77,9 +78,10 @@
 					text = "이미 존재하는 아이디입니다.";
 				}
 				
-				$(".signupMessage").html(text);
-				chkMessage = $(".signupMessage").html();
-				openPopup();
+				alert(text);
+				chkMessage = text;
+				//$(".signupMessage").html(text);
+				//openPopup();
 			},
 			error: function(error) {
 				alert(error);
@@ -96,12 +98,14 @@
 			if(chkMessage == "생성 가능한 아이디입니다.") {
 				
 			} else if (chkMessage == "이미 존재하는 아이디입니다.") {
-				$(".signupMessage").html("이미 존재하는 아이디입니다.<br>다시 아이디를 입력하고 이메일 확인 버튼을 눌러주세요.");
-				openPopup();
+				alert("이미 존재하는 아이디입니다.<br>다시 아이디를 입력하고 이메일 확인 버튼을 눌러주세요.");
+				//$(".signupMessage").html("이미 존재하는 아이디입니다.<br>다시 아이디를 입력하고 이메일 확인 버튼을 눌러주세요.");
+				//openPopup();
 				return;
 			} else {
-				$(".signupMessage").html("이메일 확인버튼을 눌러주세요.");
-				openPopup();
+				alert("이메일 확인버튼을 눌러주세요.");
+				//$(".signupMessage").html("이메일 확인버튼을 눌러주세요.");
+				//openPopup();
 				return;
 			}
 			
@@ -111,37 +115,42 @@
 			console.log("pwd1 : " + pwd1 + ", pwd2 : " + pwd2);
 			
 			if(pwd1 == "" || pwd2 == "") {
-				$(".signupMessage").html("비밀번호를 입력해주세요.");
-				openPopup();
+				alert("비밀번호를 입력해주세요.");
+				//$(".signupMessage").html("비밀번호를 입력해주세요.");
+				//openPopup();
 				return;
 			}
 			
 			if(pwd1 === pwd2) {
 				
 			} else {
-				$(".signupMessage").html("비밀번호가 일치하지 않습니다.");
-				openPopup();
+				alert("비밀번호가 일치하지 않습니다.");
+				//$(".signupMessage").html("비밀번호가 일치하지 않습니다.");
+				//openPopup();
 				return;
 			}
 			
 			var name = $("input[name=g_name]").val();
 			if(name == "") {
-				$(".signupMessage").html("성함을 입력해주세요.");
-				openPopup();
+				alert("성함을 입력해주세요.");
+				//$(".signupMessage").html("성함을 입력해주세요.");
+				//openPopup();
 				return;
 			}
 			
 			var email = $("input[name=email]").val();
 			
 			if(email == "") {
-				$(".signupMessage").html("이메일을 입력해주세요.");
-				openPopup();
+				alert("이메일을 입력해주세요.");
+				//$(".signupMessage").html("이메일을 입력해주세요.");
+				//openPopup();
 				return;
 			}
 			
 			if(!CheckEmail(email)) {
-				$(".signupMessage").html("이메일 형식으로 입력해주세요.");
-				openPopup();
+				alert("이메일 형식으로 입력해주세요.");
+				//$(".signupMessage").html("이메일 형식으로 입력해주세요.");
+				//openPopup();
 				return;
 			};
 			

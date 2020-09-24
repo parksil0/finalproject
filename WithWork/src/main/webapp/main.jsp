@@ -18,11 +18,44 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="js/nav.js"></script>
     
+    <!-- Google API -->
+    <script>
+    	function checkLoginStatus() {
+	    	var loginBtn = document.querySelector(".googleBtn");
+	    	if(gauth.isSignedIn.get()) {
+	    		console.log('logined');
+	    		loginBtn.value = 'Logout';
+	    		var profile = gauth.currentUser.get().getBasicProfile();
+	    		console.log(profile);
+	    		} else {
+	    		console.log('not logined');
+	    		loginBtn.value = 'Login';
+	    	}
+    	}
+    	function init() {
+    		console.log("init");
+    		gapi.load('auth2', function() {
+    		    /* Ready. Make a call to gapi.auth2.init or some other API */
+    		    console.log("auth2");
+    		    window.gauth = gapi.auth2.init({
+    		    	client_id: '940869694876-gflbqncmm64cb9h041j0a8ilepps113l.apps.googleusercontent.com'
+    		    })
+    		    gauth.then(function(){
+    		    	console.log("googleAuth success.");
+    		    	checkLoginStatus();
+    		    }, function(){
+    		    	console.log("googleAuth fail.");
+    		    });
+    		});
+    	}
+    </script>
+    
     <title>withWork</title>
      
 </head>
 <body>
 <%@ include file="include/nav.jsp" %>
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 </body>
 
 </html>

@@ -44,22 +44,25 @@
 		});
 		
 		// controller에서 보낸 result 메세지를 변수에 저장
-		var result = '<c:out value="${regResult}" />';
+		//var result = '<c:out value="${regResult}" />';
 		
 		checkPopup(result);
-		
+		console.log("result : " + result);
 		function checkPopup(result) {
 			if(result == '') {
 				return;
 			}
 			
 			if(parseInt(result) == 1) {
-				$(".notiMsg").html("회원가입이 정상적으로 완료되었습니다.");
+				alert("회원가입이 정상적으로 완료되었습니다.");
+				// $(".notiMsg").html("회원가입이 정상적으로 완료되었습니다.");
+				// openPopup();
 			} else if(parseInt(result) == 2) {
-				$(".notiMsg").html("가입 시 입력한 이메일로 인증메일을 보냈습니다.<br>인증버튼을 누르면 회원가입이 완료됩니다.");
+				alert("가입 시 입력한 이메일로 인증메일을 보냈습니다.<br>인증버튼을 누르면 회원가입이 완료됩니다.");
+				// $(".notiMsg").html("가입 시 입력한 이메일로 인증메일을 보냈습니다.<br>인증버튼을 누르면 회원가입이 완료됩니다.");
+				//openPopup();
 			}
 			
-			openPopup();
 			
 			
 		}
@@ -91,8 +94,9 @@
 						formObj.submit();
 					} else {
 						console.log("로그인 실패");
-						$(".notiMsg").html("로그인에 실패하였습니다.<br>아이디와 비밀번호를 다시 입력해주세요.");
-						openPopup();
+						alert("로그인에 실패하였습니다.<br>아이디와 비밀번호를 다시 입력해주세요.");
+						//$(".notiMsg").html("로그인에 실패하였습니다.<br>아이디와 비밀번호를 다시 입력해주세요.");
+						//openPopup();
 						$("#id").val('');
 						$("#password").val('').focus();
 						return;
@@ -139,10 +143,11 @@
 						$(".findPwdPopup").hide();
 						$(".findPwdPopup2").show();
 					} else {
-						$(".notiMsg").html("입력한 정보가 일치하지 않습니다.");
+						alert("입력한 정보가 일치하지 않습니다.");
+						//$(".notiMsg").html("입력한 정보가 일치하지 않습니다.");
 						$("#findId").val('');
 						$("#findName").val('');
-						openPopup();
+						//openPopup();
 					}
 				},
 				error: function(error) {
@@ -162,10 +167,11 @@
 				alert("맞아");
 			} else {
 				alert("틀려;");
-				$(".notiMsg").html("비밀번호가 일치하지 않습니다.<br>다시 입력해 주세요.");
+				alert("비밀번호가 일치하지 않습니다.<br>다시 입력해 주세요.");
+				//$(".notiMsg").html("비밀번호가 일치하지 않습니다.<br>다시 입력해 주세요.");
 				pwd1.val('');
 				pwd2.val('');
-				openPopup();
+				//openPopup();
 				return;
 			}
 			console.log("비밀번호 변경 id : " + id);
@@ -178,9 +184,10 @@
 					
 					if(parseInt(data) == 1) {
 						console.log("암호 변경처리 됐?? : " + data);
-						$(".notiMsg").html("비밀번호가 변경되었습니다.");
-						$(".okBtn").html("<a href='main.do'>확인</a>");
-						openPopup();
+						alert("비밀번호가 변경되었습니다.");
+						//$(".notiMsg").html("비밀번호가 변경되었습니다.");
+						//$(".okBtn").html("<a href='main.do'>확인</a>");
+						//openPopup();
 					}
 				},
 				error: function(error) {
@@ -202,13 +209,19 @@
 				data: "g_name=" + findName2 + "&email=" + findEmail,
 				success: function(data) {
 					console.log("FindId id : " + data);
-					$(".notiMsg").html("찾으시는 아이디는 " + data + " 입니다.");
-					$(".okBtn").html("<a href='main.do'>확인</a>");
-					openPopup();
+					alert("찾으시는 아이디는 " + data + " 입니다.");
+					//$(".notiMsg").html("찾으시는 아이디는 " + data + " 입니다.");
+					//$(".okBtn").html("<a href='main.do'>확인</a>");
+					//openPopup();
 				},
 				error: function(error) {
 					alert(error);
 				}
 			});
+		});
+		
+		$(".googleBtn").on("click", function(){
+			
+		
 		});
 	});
