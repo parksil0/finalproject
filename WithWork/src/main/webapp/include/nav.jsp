@@ -10,6 +10,7 @@
             <li><button onclick="
             	gauth.signOut().then(function(){
             		console.log('gauth.signOut()');
+            		window.location.reload();
             	});
             ">google logout</button></li>
             <c:choose>
@@ -53,14 +54,18 @@
                     </div>
                     <br><br><br>
                 </form>
-                <div class="navBtn">
-                    <button class="googleBtn" onclick="
-                    	gauth.signIn().then(function(){
-                    		console.log('gauth.signIn()');
-                    	});
-                    ">Google 로그인</button>
-                    <button class="kakaoBtn" onclick="location.href='kakao.do'">Kakao 로그인</button>
-                </div>
+                <form id="otherLoginForm" method="post">
+	                <div class="navBtn">
+	                    <button type="button" class="googleBtn" onclick="
+	                    	gauth.signIn().then(function(){
+	                    		console.log('gauth.signIn()');
+	                    		window.location.reload();
+	                    	});
+	                    	//window.location.reload();
+	                    ">Google 로그인</button>
+	                    <button class="kakaoBtn" onclick="location.href='kakao.do'">Kakao 로그인</button>
+	                </div>
+                </form>
             </dd>
         </dl>
     </div>

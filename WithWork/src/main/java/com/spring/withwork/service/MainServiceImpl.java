@@ -30,7 +30,7 @@ public class MainServiceImpl implements MainService{
 	@Transactional
 	public void register(GuestVO guest) throws Exception {
 		System.out.println("MainServiceImpl.register() 실행");
-		mainDao.insert(guest);
+		mainDao.register(guest);
 		
 		// 임의의 authkey 생성
 		String authkey = new TempKey().getKey(50, false);
@@ -108,5 +108,17 @@ public class MainServiceImpl implements MainService{
 	public int insertGroup(CompanyVO company, GuestVO guest) {
 		System.out.println("MainServiceImpl.insertGroup() 실행");
 		return mainDao.insertGroup(company, guest);
+	}
+	
+	@Override
+	public int googleLogin(GuestVO guest) {
+		System.out.println("MainServiceImpl.googleLogin() 실행");
+		return mainDao.googleLogin(guest);
+	}
+	
+	@Override
+	public int googleRegister(GuestVO guest) {
+		System.out.println("MainServiceImpl.googleRegister() 실행");
+		return mainDao.googleRegister(guest);
 	}
 }

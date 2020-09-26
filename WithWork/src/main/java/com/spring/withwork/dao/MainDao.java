@@ -16,9 +16,9 @@ public class MainDao {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public void insert(GuestVO guest) {
+	public void register(GuestVO guest) {
 		System.out.println("MainDao.insert() 실행");
-		mybatis.insert("MainMapper.insert", guest);
+		mybatis.insert("MainMapper.register", guest);
 	}
 
 	public int checkId(String id) {
@@ -63,6 +63,7 @@ public class MainDao {
 
 	public GuestVO guestInfo(GuestVO guest) {
 		System.out.println("MainDao.guestInfo() 실행");
+		System.out.println("guest 정보 : " + guest);
 		return mybatis.selectOne("MainMapper.guestInfo", guest);
 	}
 
@@ -74,5 +75,15 @@ public class MainDao {
 		map.put("id", guest.getId());
 		System.out.println("map : " + map);
 		return mybatis.insert("MainMapper.insertGroup", map);
+	}
+
+	public int googleLogin(GuestVO guest) {
+		System.out.println("MainDao.googleLogin() 실행");
+		return mybatis.selectOne("MainMapper.googleLogin", guest);
+	}
+
+	public int googleRegister(GuestVO guest) {
+		System.out.println("MainDao.googleRegister() 실행");
+		return mybatis.insert("MainMapper.googleRegister", guest);
 	}
 }

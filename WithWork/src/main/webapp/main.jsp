@@ -20,16 +20,15 @@
     
     <!-- Google API -->
     <script>
+    	
     	function checkLoginStatus() {
 	    	var loginBtn = document.querySelector(".googleBtn");
 	    	if(gauth.isSignedIn.get()) {
 	    		console.log('logined');
-	    		loginBtn.value = 'Logout';
 	    		var profile = gauth.currentUser.get().getBasicProfile();
-	    		console.log(profile);
+	    		googleLogin(profile)
 	    		} else {
 	    		console.log('not logined');
-	    		loginBtn.value = 'Login';
 	    	}
     	}
     	function init() {
@@ -43,13 +42,61 @@
     		    gauth.then(function(){
     		    	console.log("googleAuth success.");
     		    	checkLoginStatus();
+    	    		//googleLogin(profile);
     		    }, function(){
     		    	console.log("googleAuth fail.");
     		    });
     		});
     	}
     </script>
-    
+    <script>
+    	function googleLogin(profile) {
+    		
+    		formObj = $("#otherLoginForm");
+    		googleBtn = $(".googleBtn");
+    		
+    		id = profile.getId();
+    		email = profile.getEmail();
+    		name = profile.getName();
+    		authStatus = 'google';
+    		
+    		console.log('id : ' + id + ', email : ' + email + ', name : ' + name);
+    		
+    		$.ajax({
+				url: "/login.do",
+				type: "post",
+				data: "email=" + email+ "&g_name=" + name + "&id=" + id + "&authStatus=" + authStatus,
+				success: function(data) {
+					
+					console.log("login ajax 전달받은 값 data : " + data);
+					
+					if(parseInt(data) == 1) {
+						console.log("아이디 전달 받음");
+						var id = profile.getId();
+						console.log("전달받은 아이디 : " + id);
+						googleBtn.attr("onclick", "");
+						formObj.html("<input type='hidden' name='id' value='"+id+"'>");
+						formObj.attr("action", "loginSuccess.do");
+						formObj.submit();
+					} else {
+						
+						/*
+						console.log("로그인 실패");
+						alert("로그인에 실패하였습니다.<br>아이디와 비밀번호를 다시 입력해주세요.");
+						//$(".notiMsg").html("로그인에 실패하였습니다.<br>아이디와 비밀번호를 다시 입력해주세요.");
+						//openPopup();
+						$("#id").val('');
+						$("#password").val('').focus();
+						return;
+						*/
+					}
+				},
+				error: function(error) {
+					alert("에러 : " + error);
+				}
+			});
+   		}
+    </script>
     <title>withWork</title>
      
 </head>

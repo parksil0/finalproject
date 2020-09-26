@@ -13,18 +13,14 @@ public class GuestVO {
 	private String phone;
 	private Date regdate;
 	private String authKey;
-	private int authStatus;
+	private String authStatus;
 		
 	public GuestVO() {
 		
 	}
 	
-	public GuestVO(String g_name) {
-		this.g_name = g_name;
-	}
-
 	public GuestVO(int g_num, String id, String password, String g_name, String address, String email, String phone,
-			Date regdate, String authKey, int authStatus) {
+			Date regdate, String authKey, String authStatus) {
 		this.g_num = g_num;
 		this.id = id;
 		this.password = password;
@@ -34,15 +30,7 @@ public class GuestVO {
 		this.phone = phone;
 		this.regdate = regdate;
 		this.authKey = authKey;
-	}
-	
-	public GuestVO(String id, String password, String g_name, String address, String email, String phone) {
-		this.id = id;
-		this.password = password;
-		this.g_name = g_name;
-		this.address = address;
-		this.email = email;
-		this.phone = phone;
+		this.authStatus = authStatus;
 	}
 
 	public int getG_num() {
@@ -99,10 +87,10 @@ public class GuestVO {
 	public void setAuthKey(String authKey) {
 		this.authKey = authKey;
 	}
-	public int getAuthStatus() {
+	public String getAuthStatus() {
 		return authStatus;
 	}
-	public void setAuthStatus(int authStatus) {
+	public void setAuthStatus(String authStatus) {
 		this.authStatus = authStatus;
 	}
 

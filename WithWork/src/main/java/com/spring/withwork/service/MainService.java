@@ -1,8 +1,5 @@
 package com.spring.withwork.service;
 
-import java.util.List;
-import java.util.Map;
-
 import com.spring.withwork.vo.CompanyVO;
 import com.spring.withwork.vo.GuestVO;
 
@@ -25,5 +22,9 @@ public interface MainService {
 	public GuestVO guestInfo(GuestVO guest);
 
 	public int insertGroup(CompanyVO company, GuestVO guest);
+
+	public int googleLogin(GuestVO guest);
+
+	public int googleRegister(GuestVO guest);
 	
 }

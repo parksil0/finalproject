@@ -35,10 +35,25 @@ public class MainController {
 	@PostMapping("/login.do")
 	public int login(GuestVO guest, HttpSession session) {
 		System.out.println("/login(), post 접근");
-		int result = service.login(guest);
+		System.out.println("받은 정보 : " + guest);
+		System.out.println("authstatus : " + guest.getAuthStatus());
+		int result = 0;
+		if(guest.getAuthStatus() == null) {
+			result = service.login(guest);
+		} else if(guest.getAuthStatus().equals("google")) {
+			System.out.println("google계정으로 로그인 시도 중");
+			result = service.googleLogin(guest);
+			System.out.println("google 계정 로그인 여부 result : " + result);
+			//만약 구글 아이디로 DB에 입력이 안되어 있을 시(result값이 0 인 경우) DB에 insert
+			if(result == 0) {
+				System.out.println("google 아이디가 현재 입력되어있지 않음. start insert");
+				result = service.googleRegister(guest);
+			}
+		}
 		
 		if(result == 1) {
 			session.setAttribute("id", guest.getId());
+			System.out.println("result = 1, id : " + guest.getId());
 		}
 		
 		return result;
@@ -48,6 +63,7 @@ public class MainController {
 	public String loginSuccess(GuestVO guest, HttpSession session) {
 		System.out.println("/loginSuccess(), post 접근");
 		guest = service.guestInfo(guest);
+		System.out.println("name : " + guest.getG_name());
 		session.setAttribute("g_name", guest.getG_name());
 		return "main.jsp";
 	}
@@ -73,7 +89,7 @@ public class MainController {
 	@GetMapping("/regiConfirm.do")
 	public String emailConfirm(@ModelAttribute("guest")GuestVO guest, Model model) {
 		System.out.println("email " + guest.getEmail() + " : auto confirmed");
-		guest.setAuthStatus(1);
+		guest.setAuthStatus("withwork");
 		service.updateAuthStatus(guest);
 		System.out.println("전달받은 guest 값 : " + guest);
 		
