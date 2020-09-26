@@ -7,6 +7,11 @@
     <div id="mainNav">
         <ul class="leftNav">
             <li class="homePage"><a href="main.do">WITHWORK</a></li>
+            <li><button onclick="
+            	gauth.signOut().then(function(){
+            		console.log('gauth.signOut()');
+            	});
+            ">google logout</button></li>
             <c:choose>
             	<c:when test="${empty sessionScope.id}">
 	           		<li class="login">로그인</li>
@@ -52,7 +57,7 @@
                     <button class="googleBtn" onclick="
                     	gauth.signIn().then(function(){
                     		console.log('gauth.signIn()');
-                    	})
+                    	});
                     ">Google 로그인</button>
                     <button class="kakaoBtn" onclick="location.href='kakao.do'">Kakao 로그인</button>
                 </div>
