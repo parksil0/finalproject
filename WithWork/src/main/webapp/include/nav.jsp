@@ -7,12 +7,6 @@
     <div id="mainNav">
         <ul class="leftNav">
             <li class="homePage"><a href="main.do">WITHWORK</a></li>
-            <li><button onclick="
-            	gauth.signOut().then(function(){
-            		console.log('gauth.signOut()');
-            		window.location.reload();
-            	});
-            ">google logout</button></li>
             <c:choose>
             	<c:when test="${empty sessionScope.id}">
 	           		<li class="login">로그인</li>
@@ -26,7 +20,12 @@
             				<li><a href="myPage.do">마이 페이지</a></li>
             			</ul>
             		</li>
-            		<li class="logout"><a href="logout.do">로그아웃</a></li>
+            		<li class="logout"><button type="button" onclick="
+            			gauth.signOut().then(function(){
+                    		console.log('gauth.signOut()');
+                    	});
+            			javascript:location.href='logout.do';
+            		">로그아웃</button></li>
             	</c:otherwise>
             </c:choose>
             <li class="snsLink"><a href="#"><img src="img/facebookicon.jpg"></a></li>
@@ -61,7 +60,6 @@
 	                    		console.log('gauth.signIn()');
 	                    		window.location.reload();
 	                    	});
-	                    	//window.location.reload();
 	                    ">Google 로그인</button>
 	                    <button class="kakaoBtn" onclick="location.href='kakao.do'">Kakao 로그인</button>
 	                </div>
@@ -121,6 +119,9 @@
     
     <div class="darkBack"></div>
     
+    
+    <!-- EL 로드가 안되어 따로 지정해놓음. -->
     <script>
     	var result = '<c:out value="${regResult}" />';
+    	var id = '<c:out value="${sessionScope.id}" />';
     </script>

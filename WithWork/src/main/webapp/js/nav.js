@@ -1,4 +1,83 @@
+	/* otherlogin API 시작*/
 
+	<!-- Google API -->
+
+	function init() {
+		console.log("init");
+		gapi.load('auth2', function() {
+		    /* Ready. Make a call to gapi.auth2.init or some other API */
+		    console.log("auth2");
+		    window.gauth = gapi.auth2.init({
+		    	client_id: '940869694876-gflbqncmm64cb9h041j0a8ilepps113l.apps.googleusercontent.com'
+		    })
+		    gauth.then(function(){
+		    	console.log("googleAuth success.");
+		    	checkLoginStatus();
+		    }, function(){
+		    	console.log("googleAuth fail.");
+		    });
+		});
+	}
+	
+	function checkLoginStatus() {
+		
+		console.log("checkLoginStatus() id : " + id);
+		
+    	if(gauth.isSignedIn.get()) {
+    		console.log('logined');
+  			var profile = gauth.currentUser.get().getBasicProfile();
+  			
+  			if(id == '') {
+  				googleLogin(profile);
+  			}
+  			
+		} else {
+		console.log('not logined');
+    	}
+	}
+	
+	
+	function googleLogin(profile) {
+		
+		formObj = $("#otherLoginForm");
+		
+		id = profile.getId();
+		email = profile.getEmail();
+		name = profile.getName();
+		authStatus = 'google';
+		
+		
+		console.log('id : ' + id + ', email : ' + email + ', name : ' + name);
+		
+		$.ajax({
+			url: "/login.do",
+			type: "post",
+			data: "email=" + email+ "&g_name=" + name + "&id=" + id + "&authStatus=" + authStatus,
+			success: function(data) {
+				
+				console.log("login ajax 전달받은 값 data : " + data);
+				
+				if(parseInt(data) == 1) {
+					console.log("아이디 전달 받음");
+					var id = profile.getId();
+					console.log("전달받은 아이디 : " + id);
+					formObj.html("<input type='hidden' name='id' value='"+id+"'>");
+					formObj.attr("action", "loginSuccess.do");
+					formObj.submit();
+				} else {
+					
+				}
+			},
+			error: function(error) {
+				alert("에러 : " + error);
+			}
+		});
+	}
+	
+	/* otherlogin API 끝*/
+	
+	
+	
 	$(document).ready(function(){
 	
 	    /* 네비게이션 바 우측 상단 로그인 클릭 시 팝업 창 열림 처리 */
