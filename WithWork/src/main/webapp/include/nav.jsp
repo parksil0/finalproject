@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    
+
 	<!--상단 네비게이션-->
 	
     <div id="mainNav">
@@ -21,9 +20,15 @@
             			</ul>
             		</li>
             		<li class="logout"><button type="button" onclick="
-            			gauth.signOut().then(function(){
-                    		console.log('gauth.signOut()');
-                    	});
+            			if(authstatus == 'google') {
+	            			gauth.signOut().then(function(){
+	                    		console.log('gauth.signOut()');
+	                    	});
+            			} else if(authstatus == 'kakao') {
+            				Kakao.Auth.logout(function() {
+           						console.log(Kakao.Auth.getAccessToken());
+           					});
+            			}
             			javascript:location.href='logout.do';
             		">로그아웃</button></li>
             	</c:otherwise>
@@ -53,16 +58,23 @@
                     </div>
                     <br><br><br>
                 </form>
-                <form id="otherLoginForm" method="post">
+                <form class="otherLoginForm google" method="post">
 	                <div class="navBtn">
 	                    <button type="button" class="googleBtn" onclick="
 	                    	gauth.signIn().then(function(){
 	                    		console.log('gauth.signIn()');
-	                    		window.location.reload();
+	                    		init();
 	                    	});
 	                    ">Google 로그인</button>
-	                    <button class="kakaoBtn" onclick="location.href='kakao.do'">Kakao 로그인</button>
+	                    
 	                </div>
+                </form>
+                <form class="otherLoginForm kakao" method="post">
+                	<div class="navBtn">
+                		<button type="button" class="kakaoBtn" onclick="
+	                    	loginWithKakao();
+	                    ">Kakao 로그인</button>
+                	</div>
                 </form>
             </dd>
         </dl>
@@ -124,4 +136,5 @@
     <script>
     	var result = '<c:out value="${regResult}" />';
     	var id = '<c:out value="${sessionScope.id}" />';
+    	var authstatus = '<c:out value="${sessionScope.authstatus}" />'
     </script>

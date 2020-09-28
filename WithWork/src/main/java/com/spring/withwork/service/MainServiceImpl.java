@@ -121,4 +121,34 @@ public class MainServiceImpl implements MainService{
 		System.out.println("MainServiceImpl.googleRegister() 실행");
 		return mainDao.googleRegister(guest);
 	}
+	
+	@Override
+	public int kakaoLogin(GuestVO guest) {
+		System.out.println("MainServiceImpl.kakaoLogin() 실행");
+		return mainDao.kakaoLogin(guest);
+	}
+	
+	@Override
+	public int kakaoRegister(GuestVO guest) {
+		System.out.println("MainServiceImpl.kakaoRegister() 실행");
+		return mainDao.kakaoRegister(guest);
+	}
+	
+	@Override
+	public int updateName(GuestVO guest) {
+		System.out.println("MainServiceImpl.updateName() 실행");
+		return mainDao.updateName(guest);
+	}
+	
+	@Override
+	public int checkPwd(GuestVO guest) {
+		System.out.println("MainServiceImpl.checkPwd() 실행");
+		return mainDao.checkPwd(guest);
+	}
+	
+	@Override
+	public void withdrawal(GuestVO guest) {
+		System.out.println("MainServiceImpl.withdrawal() 실행");
+		mainDao.withdrawal(guest);
+	}
 }

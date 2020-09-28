@@ -44,10 +44,8 @@
 	</select>
 	
 	<insert id="insertGroup" parameterType="map">
-		
 		insert into company(c_num, name, g_num, regdate, subject)
 		values(company_seq.nextval, #{name}, (select g_num from guest where id = #{id}), sysdate, #{subject})
-		
 	</insert>
 	
 	<select id="googleLogin" parameterType="com.spring.withwork.vo.GuestVO" resultType="int">
@@ -58,6 +56,27 @@
 		insert into guest(g_num, id, email, g_name, regdate, authstatus)
 		values(guest_seq.nextval, #{id}, #{email}, #{g_name}, sysdate, #{authStatus} )
 	</insert>
+	
+	<select id="kakaoLogin" parameterType="com.spring.withwork.vo.GuestVO" resultType="int">
+		select count(*) from guest where id = #{id} and authstatus = #{authStatus}
+	</select>
+	
+	<insert id="kakaoRegister" parameterType="com.spring.withwork.vo.GuestVO">
+		insert into guest(g_num, id, g_name, regdate, authstatus)
+		values(guest_seq.nextval, #{id}, #{g_name}, sysdate, #{authStatus} )
+	</insert>
+	
+	<update id="updateName" parameterType="com.spring.withwork.vo.GuestVO">
+		update guest set g_name = #{g_name} where id = #{id}
+	</update>
+	
+	<select id="checkPwd" parameterType="com.spring.withwork.vo.GuestVO" resultType="int">
+		select count(id) from guest where id = #{id} and password = #{password} 
+	</select>
+	
+	<delete id="withdrawal"  parameterType="com.spring.withwork.vo.GuestVO">
+		<!-- 관련 fk cascade 설정 후 다시 작업 -->
+	</delete>
 </mapper>
 
 

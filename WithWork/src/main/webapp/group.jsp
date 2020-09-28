@@ -16,7 +16,9 @@
     
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+    <script src="js/nav.js"></script>
     
     <title>withWork</title>
      

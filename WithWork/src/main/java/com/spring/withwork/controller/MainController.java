@@ -49,17 +49,27 @@ public class MainController {
 				System.out.println("google 아이디가 현재 입력되어있지 않음. start insert");
 				result = service.googleRegister(guest);
 			}
+		} else if(guest.getAuthStatus().equals("kakao")) {
+			System.out.println("kakao계정으로 로그인 시도 중");
+			result = service.kakaoLogin(guest);
+			System.out.println("kakao 계정 로그인 여부 result : " + result);
+			//만약 카카오 아이디로 DB에 입력이 안되어 있을 시(result값이 0 인 경우) DB에 insert
+			if(result == 0) {
+				System.out.println("kakao 아이디가 현재 입력되어있지 않음. start insert");
+				result = service.kakaoRegister(guest);
+			}
 		}
 		
 		if(result == 1) {
 			session.setAttribute("id", guest.getId());
+			session.setAttribute("authstatus", guest.getAuthStatus());
 			System.out.println("result = 1, id : " + guest.getId());
 		}
 		
 		return result;
 	}
 	
-	@PostMapping("loginSuccess.do")
+	@PostMapping("/loginSuccess.do")
 	public String loginSuccess(GuestVO guest, HttpSession session) {
 		System.out.println("/loginSuccess(), post 접근");
 		guest = service.guestInfo(guest);
@@ -152,12 +162,12 @@ public class MainController {
 		return result;
 	}
 	
-	@GetMapping("insertGroup.do")
+	@GetMapping("/insertGroup.do")
 	public String insertGroup() {
 		return "group.jsp";
 	}
 	
-	@PostMapping("insertGroup.do")
+	@PostMapping("/insertGroup.do")
 	public String insertGroup(CompanyVO company, GuestVO guest) {
 		System.out.println("/insertGroup(), post 접근");
 		System.out.println("company 정보 : " + company);
@@ -169,6 +179,32 @@ public class MainController {
 	@GetMapping("/myPage.do")
 	public String myPage() {
 		return "myPage.jsp";
+	}
+	
+	@PostMapping("/updateName.do")
+	public String updateName(GuestVO guest) {
+		System.out.println("/updateName(), post 접근");
+		System.out.println("guest 정보 : " + guest);
+		service.updateName(guest);
+		return "myPage.jsp";
+	}
+	
+	@ResponseBody
+	@PostMapping("/checkPwd.do")
+	public int checkPwd(GuestVO guest) {
+		System.out.println("/checkPwd(), post 접근");
+		System.out.println("guest 정보 : " + guest);
+		int result = service.checkPwd(guest);
+		System.out.println("result : " + result);
+		return result;
+	}
+	
+	@PostMapping("/withdrawal.do")
+	public String withdrawal(GuestVO guest) {
+		System.out.println("/checkPwd(), post 접근");
+		System.out.println("guest 정보 : " + guest);
+		service.withdrawal(guest);
+		return "main.jsp";
 	}
 	
 }

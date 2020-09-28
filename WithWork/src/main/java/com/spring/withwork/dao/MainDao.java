@@ -86,4 +86,29 @@ public class MainDao {
 		System.out.println("MainDao.googleRegister() 실행");
 		return mybatis.insert("MainMapper.googleRegister", guest);
 	}
+
+	public int kakaoLogin(GuestVO guest) {
+		System.out.println("MainDao.kakaoLogin() 실행");
+		return mybatis.selectOne("MainMapper.kakaoLogin", guest);
+	}
+
+	public int kakaoRegister(GuestVO guest) {
+		System.out.println("MainDao.kakaoRegister() 실행");
+		return mybatis.insert("MainMapper.kakaoRegister", guest);
+	}
+
+	public int updateName(GuestVO guest) {
+		System.out.println("MainDao.updateName() 실행");
+		return mybatis.update("MainMapper.updateName", guest);
+	}
+
+	public int checkPwd(GuestVO guest) {
+		System.out.println("MainDao.checkPwd() 실행");
+		return mybatis.selectOne("MainMapper.checkPwd", guest);
+	}
+
+	public Object withdrawal(GuestVO guest) {
+		System.out.println("MainDao.withdrawal() 실행");
+		return mybatis.delete("MainMapper.withdrawal", guest);
+	}
 }

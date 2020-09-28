@@ -1,9 +1,79 @@
 	/* otherlogin API 시작*/
+	
+	<!-- Kakao API -->
+	
+	function kakaoInit() {
+		console.log('kakao init');
+	   	// SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+   		Kakao.init('34a62fd0597315633988b8d54a2c0ed4');
+		
+        // SDK 초기화 여부를 판단합니다.
+        console.log(Kakao.isInitialized());
+	}
+	
+	function loginWithKakao() {
+		Kakao.Auth.login({
+			success: function(authObj) {
+				//alert(JSON.stringify(authObj));
+				
+				Kakao.API.request({
+					url: '/v2/user/me',
+					success: function(res) {
+						console.log('response : ' + res);
+						
+						if(id == '') {
+							kakaoLogin(res)
+						}
+					}
+				})
+				console.log('autjObj : ' + JSON.stringify(authObj));
+				//var token = authObj.access_token;
+			},
+			fail: function(err) {
+				alert(JSON.stringify(err));
+			},
+		})
+	}
+	
+	function kakaoLogin(res) {
+		
+		formObj = $(".kakao");
+		
+		var kakaoId = res.id;
+		var kakaoName = res.properties.nickname;
+		authStatus = 'kakao';
+		console.log('id : ' + kakaoId + ', name : ' + kakaoName);
+		
+		$.ajax({
+			url: "/login.do",
+			type: "post",
+			data: "g_name=" + kakaoName + "&id=" + kakaoId + "&authStatus=" + authStatus,
+			success: function(data) {
+				
+				console.log("login ajax 전달받은 값 data : " + data);
+				
+				if(parseInt(data) == 1) {
+					console.log("아이디 전달 받음");
+					var id = res.id;
+					console.log("전달받은 아이디 : " + id);
+					formObj.html("<input type='hidden' name='id' value='"+id+"'>");
+					formObj.attr("action", "loginSuccess.do");
+					formObj.submit();
+				} else {
+					alert("로그인 실패");	
+				}
+			},
+			error: function(error) {
+				alert("에러 : " + error);
+			}
+		});
+	}
+	kakaoInit();
 
 	<!-- Google API -->
 
 	function init() {
-		console.log("init");
+		console.log("google init");
 		gapi.load('auth2', function() {
 		    /* Ready. Make a call to gapi.auth2.init or some other API */
 		    console.log("auth2");
@@ -39,7 +109,7 @@
 	
 	function googleLogin(profile) {
 		
-		formObj = $("#otherLoginForm");
+		formObj = $(".google");
 		
 		id = profile.getId();
 		email = profile.getEmail();
@@ -65,7 +135,7 @@
 					formObj.attr("action", "loginSuccess.do");
 					formObj.submit();
 				} else {
-					
+					alert("로그인 실패");
 				}
 			},
 			error: function(error) {

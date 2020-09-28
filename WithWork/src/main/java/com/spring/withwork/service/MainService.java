@@ -26,5 +26,15 @@ public interface MainService {
 	public int googleLogin(GuestVO guest);
 
 	public int googleRegister(GuestVO guest);
+
+	public int kakaoLogin(GuestVO guest);
+
+	public int kakaoRegister(GuestVO guest);
+
+	public int updateName(GuestVO guest);
+
+	public int checkPwd(GuestVO guest);
+
+	public void withdrawal(GuestVO guest);
 	
 }

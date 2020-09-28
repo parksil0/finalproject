@@ -23,7 +23,7 @@
 <body>
 
     <div id="joinFormHeader">
-        <h1>WITHWORK</h1>
+        <h1><a href="main.do">WITHWORK</a></h1>
     </div>
     <form id="signup" action="register.do" method="post">
         <div class="signupForm">

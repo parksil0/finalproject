@@ -14,7 +14,7 @@
     padding-bottom: 60px;
 }
 
-#joinFormHeader h1 {
+#joinFormHeader h1 a {
     font-size: 44px;
     text-align: center;
     font-weight: bold;
