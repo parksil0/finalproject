@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting value="VARCHAR" name="jdbcTypeForNull" />
+	</settings>
+	<typeAliases>
+		<typeAlias alias="project" type="com.spring.withwork.vo.ProjectVO"/>
+		<typeAlias alias="guest" type="com.spring.withwork.vo.GuestVO"/>
+		<typeAlias alias="todo" type="com.spring.withwork.vo.TodoVO"/>
+		<typeAlias alias="depart" type="com.spring.withwork.vo.DepartmentVO"/>
+	</typeAliases>
+  
+	<mappers>
+	  <mapper resource="mappings/work-mapper.xml"/>
+      <mapper resource="mappings/MainMapper.xml"/>
+      <mapper resource="mappings/roadmapMapper.xml"/>
+	</mappers>
+</configuration>
+
+
+
+
