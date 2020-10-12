@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MainMapper">
+
+	<insert id="register" parameterType="com.spring.withwork.vo.GuestVO">
+		INSERT INTO GUEST(G_NUM, PASSWORD, G_NAME, EMAIL, REGDATE)
+		VALUES(GUEST_SEQ.NEXTVAL, #{password}, #{g_name}, #{email}, sysdate)
+	</insert>
+	
+	<select id="checkId" parameterType="String" resultType="int">
+		select count(email) from guest where email = #{email}
+	</select>
+	
+	<select id="findId" parameterType="com.spring.withwork.vo.GuestVO" resultType="String">
+		select email from guest where email = #{email} and g_name = #{g_name}
+	</select>
+	
+	<select id="chkId" parameterType="com.spring.withwork.vo.GuestVO" resultType="int">
+		select count(*) from guest where email = #{email} and g_name = #{g_name}
+	</select>
+	
+	<update id="updatePwd" parameterType="com.spring.withwork.vo.GuestVO">
+		update guest set password = #{password} where email = #{email}
+	</update>
+	 
+	<update id="updateAuthKey" parameterType="com.spring.withwork.vo.GuestVO">
+		update guest set authkey = #{authKey} where email = #{email}
+	</update>
+	
+	<update id="updateAuthStatus" parameterType="com.spring.withwork.vo.GuestVO">
+		update guest set authstatus = #{authStatus} where email = #{email}
+	</update>
+	
+	<select id="login" parameterType="com.spring.withwork.vo.GuestVO" resultType="int">
+		select count(authstatus) from guest where email = #{email} and password = #{password} and authstatus = 'withwork'
+	</select>
+	
+	<select id="guestInfo"  parameterType="com.spring.withwork.vo.GuestVO" resultType="com.spring.withwork.vo.GuestVO">
+		select * from guest where email = #{email}
+	</select>
+	
+	<insert id="insertGroup" parameterType="com.spring.withwork.vo.CompanyVO">
+		<selectKey keyProperty="c_num" order="BEFORE" resultType="int">
+			select company_seq.nextval from dual
+		</selectKey>
+	
+		insert into company(c_num, name, g_num, regdate, subject)
+		values(#{c_num}, #{name}, #{g_num}, sysdate, #{subject})
+	</insert>
+	
+	<select id="otherLogin" parameterType="com.spring.withwork.vo.GuestVO" resultType="string">
+		select authstatus from guest where email = #{email}
+	</select>
+	
+	<insert id="googleRegister" parameterType="com.spring.withwork.vo.GuestVO">
+		insert into guest(g_num, email, g_name, regdate, authstatus)
+		values(guest_seq.nextval, #{email}, #{g_name}, sysdate, #{authStatus} )
+	</insert>
+	
+	<insert id="kakaoRegister" parameterType="com.spring.withwork.vo.GuestVO">
+		insert into guest(g_num, id, g_name, regdate, authstatus)
+		values(guest_seq.nextval, #{id}, #{g_name}, sysdate, #{authStatus} )
+	</insert>
+	
+	<update id="updateName" parameterType="com.spring.withwork.vo.GuestVO">
+		update guest set g_name = #{g_name} where email = #{email}
+	</update>
+	
+	<select id="checkPwd" parameterType="com.spring.withwork.vo.GuestVO" resultType="int">
+		select count(email) from guest where email = #{email} and password = #{password} 
+	</select>
+	
+	<delete id="withdrawal"  parameterType="com.spring.withwork.vo.GuestVO">
+		update guest set authstatus = 'withdrawal' where email = #{email}
+	</delete>
+	
+	<!-- 1009수정 (최은서) -->
+	<select id="getProjectMe" parameterType="com.spring.withwork.vo.GuestVO" resultType="com.spring.withwork.vo.GuestVO">
+		SELECT G.*, M.M_NUM, C.C_NUM, C.NAME C_NAME 
+		FROM GUEST G, MEMBER M, COMPANY C
+		WHERE G.G_NUM = M.M_NUM AND M.C_NUM = C.C_NUM AND G.G_NUM = #{g_num}
+	</select>
+	
+	<insert id="insertRoles" parameterType="java.util.List">
+		insert into roles(r_num, g_num, c_num, role)
+			values(select roles_seq, roles.* from(
+			
+			<foreach item="item" collection="list" separator="UNION ALL " >
+				select #{item.g_num}, #{item.c_num}, #{item.role}
+				from dual
+			</foreach>
+				
+			) roles)
+			
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
