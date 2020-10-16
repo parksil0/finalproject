@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MainMapper">
+
+	<insert id="register" parameterType="com.spring.withwork.vo.GuestVO">
+		INSERT INTO GUEST(G_NUM, ID, PASSWORD, G_NAME, EMAIL, REGDATE)
+		VALUES(GUEST_SEQ.NEXTVAL, #{id}, #{password}, #{g_name}, #{email}, sysdate)
+	</insert>
+	
+	<select id="checkId" parameterType="String" resultType="int">
+		select count(id) from guest where id = #{id}
+	</select>
+	
+	<select id="findId" parameterType="com.spring.withwork.vo.GuestVO" resultType="String">
+		select id from guest where email = #{email} and g_name = #{g_name}
+	</select>
+	
+	<select id="chkId" parameterType="com.spring.withwork.vo.GuestVO" resultType="int">
+		select count(*) from guest where id = #{id} and g_name = #{g_name}
+	</select>
+	
+	<update id="updatePwd" parameterType="com.spring.withwork.vo.GuestVO">
+		update guest set password = #{password} where id = #{id}
+	</update>
+	 
+	<update id="updateAuthKey" parameterType="com.spring.withwork.vo.GuestVO">
+		update guest set authkey = #{authKey} where id = #{id}
+	</update>
+	
+	<update id="updateAuthStatus" parameterType="com.spring.withwork.vo.GuestVO">
+		update guest set authstatus = #{authStatus} where id = #{id}
+	</update>
+	
+	<select id="login" parameterType="com.spring.withwork.vo.GuestVO" resultType="int">
+		select count(*) from guest where id = #{id} and password = #{password} and authstatus = 'withwork'
+	</select>
+	
+	<select id="guestInfo"  parameterType="com.spring.withwork.vo.GuestVO"
+		resultType="com.spring.withwork.vo.GuestVO">
+	
+		select g_name from guest where id = #{id}		
+	</select>
+	
+	<insert id="insertGroup" parameterType="map">
+		insert into company(c_num, name, g_num, regdate, subject)
+		values(company_seq.nextval, #{name}, (select g_num from guest where id = #{id}), sysdate, #{subject})
+	</insert>
+	
+	<select id="googleLogin" parameterType="com.spring.withwork.vo.GuestVO" resultType="int">
+		select count(*) from guest where id = #{id} and authstatus = #{authStatus}
+	</select>
+	
+	<insert id="googleRegister" parameterType="com.spring.withwork.vo.GuestVO">
+		insert into guest(g_num, id, email, g_name, regdate, authstatus)
+		values(guest_seq.nextval, #{id}, #{email}, #{g_name}, sysdate, #{authStatus} )
+	</insert>
+	
+	<select id="kakaoLogin" parameterType="com.spring.withwork.vo.GuestVO" resultType="int">
+		select count(*) from guest where id = #{id} and authstatus = #{authStatus}
+	</select>
+	
+	<insert id="kakaoRegister" parameterType="com.spring.withwork.vo.GuestVO">
+		insert into guest(g_num, id, g_name, regdate, authstatus)
+		values(guest_seq.nextval, #{id}, #{g_name}, sysdate, #{authStatus} )
+	</insert>
+	
+	<update id="updateName" parameterType="com.spring.withwork.vo.GuestVO">
+		update guest set g_name = #{g_name} where id = #{id}
+	</update>
+	
+	<select id="checkPwd" parameterType="com.spring.withwork.vo.GuestVO" resultType="int">
+		select count(id) from guest where id = #{id} and password = #{password} 
+	</select>
+	
+	<delete id="withdrawal"  parameterType="com.spring.withwork.vo.GuestVO">
+		<!-- 관련 fk cascade 설정 후 다시 작업 -->
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
