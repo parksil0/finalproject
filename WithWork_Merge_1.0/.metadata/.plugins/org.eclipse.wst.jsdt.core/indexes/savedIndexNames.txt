@@ -1,7 +1,0 @@
-INDEX VERSION 1.4+C:\MyStudy\finalproject(WithWork)\merge\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3642187956.index
-3759353813.index
-2779920368.index
-2380048363.index
-555572362.index
-1564849422.index
